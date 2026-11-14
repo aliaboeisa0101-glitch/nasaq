@@ -1,0 +1,8 @@
+{
+  "name": "Remix علي تأهيل AI | منصة التربية الخاصة والتأهيل",
+  "description": "منصة عربية متكاملة لأخصائي التربية الخاصة والتأهيل: ملفات المستفيدين، بناء أهداف SMART، تخطيط الجلسات، بنك الأنشطة، وتسجيل الأداء اللحظي.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

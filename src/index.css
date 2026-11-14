@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-petrol: #0F625F;
+    --color-petrol-dark: #0A4644;
+    --color-petrol-light: #147A76;
+    --color-navy: #172744;
+    --color-navy-dark: #101B30;
+    --color-turquoise: #65B9B2;
+    --color-turquoise-light: #E8F5F4;
+    --color-bg-light: #F3F7F6;
+    --color-bg-dark: #17212B;
+    --color-text-sub: #64748B;
+    --color-border: #DCE6E4;
+  }
+
+  html,
+  body {
+    font-family: 'IBM Plex Sans Arabic', 'Tajawal', 'Cairo', 'Segoe UI', 'Tahoma', 'Arial', system-ui, -apple-system, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    max-width: 100vw;
+    background-color: #F3F7F6;
+    color: #172744;
+  }
+}
+
+.font-en {
+  font-family: 'Manrope', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm 10mm 10mm;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  html,
+  body {
+    background: white !important;
+    color: #172744 !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Avoid page breaks inside crucial report sections */
+  .avoid-page-break,
+  table,
+  tr,
+  .report-card,
+  .report-section {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Remove box shadows on print to look like crisp print documents */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}

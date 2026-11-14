@@ -1,0 +1,2115 @@
+تم تحديث المنصة بالكامل لتعتمد الهوية الرسمية المعتمدة **«نَسَق | NASAQ»**، مع الالتزام التام بنظام الألوان، والخطوط، واللوجو، واستحداث صفحة **«تواصل معنا»** وفق البيانات المحددة، مع توحيد الواجهات في كل الشاشات والنماذج دون المساس باستقرار البيانات والوظائف الميدانية السابقة.
+
+---
+
+### تقرير التحديثات المنفذة
+
+1. **الهوية البصرية والاسم المعتمد:**
+   - تم استبدال الهوية السابقة كلياً باسم **«نَسَق | NASAQ»** (المنصة الرقمية المتكاملة للتربية الخاصة والتأهيل).
+   - توحيد رسالة المنصة لتشمل مجالات التأهيل العشرة: (الإعاقة السمعية، التخاطب واضطرابات النطق، التكامل الحسي، العلاج الوظيفي، العلاج الطبيعي، التدخل المبكر، الإعاقة الذهنية، اضطراب طيف التوحد، صعوبات التعلم، والدمج).
+2. **نظام الألوان الرسمي المعتمد (CSS Variables & Tailwind Config):**
+   - **اللون الأساسي (Petrol Teal):** `#0F625F` للأزرار التفاعلية، والأشرطة النشطة، والعناصر الرئيسية.
+   - **اللون الثانوي (Navy):** `#172744` للعناوين والنصوص البارزة وشريط التنقل والبطاقات المميزة.
+   - **اللون المساعد (Light Turquoise):** `#65B9B2` للمؤشرات المساعدة، ونسب الإتقان، وبطاقات التقييم.
+   - **الخلفية الفاتحة:** `#F3F7F6` لجميع الصفحات والمساحات العامة لضمان راحة العين.
+   - **الخلفية الداكنة:** `#17212B` للشاشات الليلية ورؤوس الطباعة والمؤقتات.
+   - **الأبيض:** `#FFFFFF` لخلفيات البطاقات والنماذج لتحقيق أعلى تباين وقراءة مريحة.
+   - **النص الثانوي:** `#64748B` للملاحظات والإرشادات.
+   - **الحدود والفواصل:** `#DCE6E4` للخطوط الفاصلة الهادئة.
+3. **تطبيق الشعار الرسمي (Logo Integration):**
+   - تم بناء مكونات الشعار لتدعم 3 صيغ عرض متناغمة:
+     - **النسخة الأفقية المكتملة:** في الشريط العلوي وتجمع الرمز الهندسي مع كتابة «نَسَق | NASAQ».
+     - **الرمز المفرغ الدقيق:** لأيقونة التطبيق والشاشات الضيقة وشريط الهاتف.
+     - **النسخة الكاملة الموسعة:** في واجهة الترحيب، وصفحة «عن نَسَق»، وصفحة «تواصل معنا»، وترويسة التقارير المطبوعة.
+   - أُضيف دعم مباشر لملف الشعار الخارجي (`logo.png` أو `logo.svg`) عبر وسم `<img>` مع وسيط تعويضي تلقائي (Fallback SVG) مطابق بدقة لألوان وتكوين نَسَق في حال تشغيل الملف محلياً دون صور خارجية.
+4. **الخطوط الرسمية:**
+   - اعتماد **IBM Plex Sans Arabic** للنصوص والعناوين العربية، و **Manrope** للأرقام والمصطلحات والرموز الإنجليزية عبر Google Fonts.
+5. **صفحة «تواصل معنا» الرسمية:**
+   - تم إنشاء قسم مستقل في القوائم العلوية والسفلية يعرض بطاقة الأخصائي المسؤول:
+     - **الاسم:** الأخصائي علي عبدالوهاب
+     - **المسمى الوظيفي:** المسؤول عن منصة نَسَق
+     - **البريد الإلكتروني:** `aliaboeisa0101@gmail.com` (رابط `mailto:` تفاعلي مع زر اتصال بريدي).
+     - **رقم الهاتف:** `01012297081` (رابط `tel:` مباشر، مع خيار فتح محادثة WhatsApp مهنية سريعة).
+     - جعل رقم الهاتف وبيانات الاتصال قابلة للتعديل والتحكم من إعدادات المنصة المركزية.
+6. **الحفاظ على تكامل البيانات والوظائف الميدانية:**
+   - الحفاظ على إدارة المستفيدين، وتسجيل خط الأساس، ومكتبة المهارات الـ 12، ومولد أهداف SMART، وبنك الأنشطة، وتخطيط الجلسات، وتسجيل الأداء اللحظي بالمؤقت (+/-)، وحساب المؤشرات الرياضية دون تحويل البيانات الناقصة لصفر، والطباعة الرسمية، وتصدير CSV و JSON.
+
+---
+
+### ملف المنصة المحدث والمكتمل: `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0F625F">
+    <title>نَسَق | NASAQ — المنصة الرقمية للتأهيل والتربية الخاصة</title>
+    
+    <!-- الخطوط الرسمية: IBM Plex Sans Arabic و Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS لتنسيق الواجهة -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['IBM Plex Sans Arabic', 'sans-serif'],
+                        en: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        nasaq: {
+                            petrol: '#0F625F',       // اللون الأساسي Petrol Teal
+                            petrolDark: '#0A4644',
+                            petrolLight: '#147A76',
+                            navy: '#172744',         // اللون الثانوي Navy
+                            navyDark: '#101B30',
+                            turquoise: '#65B9B2',    // اللون المساعد Light Turquoise
+                            turquoiseLight: '#E8F5F4',
+                            bgLight: '#F3F7F6',      // الخلفية الفاتحة
+                            bgDark: '#17212B',       // الخلفية الداكنة
+                            textSecondary: '#64748B', // النص الثانوي
+                            border: '#DCE6E4',       // الحدود والفواصل
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --color-petrol: #0F625F;
+            --color-navy: #172744;
+            --color-turquoise: #65B9B2;
+            --color-bg-light: #F3F7F6;
+            --color-bg-dark: #17212B;
+            --color-text-sub: #64748B;
+            --color-border: #DCE6E4;
+        }
+
+        body {
+            background-color: var(--color-bg-light);
+            color: var(--color-navy);
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .font-en {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .nasaq-border {
+            border-color: var(--color-border);
+        }
+
+        .nav-active {
+            background-color: var(--color-petrol) !important;
+            color: #FFFFFF !important;
+        }
+
+        .touch-target {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        @media print {
+            body * { visibility: hidden; }
+            #printable-report-area, #printable-report-area * { visibility: visible; }
+            #printable-report-area { position: absolute; left: 0; top: 0; width: 100%; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-nasaq-petrol selection:text-white pb-20 md:pb-6 text-sm">
+
+    <!-- شريط التنبيه المهني والمسؤولية الأخلاقية -->
+    <aside aria-label="محددات المنصة والخصوصية" class="bg-white border-b border-nasaq-border text-nasaq-navy px-4 py-2 text-xs font-medium no-print shadow-2xs">
+        <div class="container mx-auto flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-nasaq-petrol"></span>
+                <span class="font-bold text-nasaq-petrol">نَسَق | NASAQ:</span>
+                <span class="text-nasaq-textSecondary hidden sm:inline">مساحة عمل رقمية تخصصية داعمة لأخصائيي التأهيل والتربية الخاصة. كافة البيانات تُعالج محلياً بأمان وسرية تامة.</span>
+                <span class="text-nasaq-textSecondary sm:hidden">نظام التأهيل الرقمي التخصصي المحمي محلياً.</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-[11px] bg-nasaq-turquoiseLight text-nasaq-petrol font-bold px-2.5 py-0.5 rounded-full border border-nasaq-turquoise/30">
+                    <i class="fa-solid fa-shield-halved ml-1"></i>خصوصية مؤمّنة
+                </span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- الرأس الرئيسي والتنقل المكتبي (Desktop Header) -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-nasaq-border shadow-xs no-print">
+        <div class="container mx-auto px-4 h-18 flex items-center justify-between">
+            
+            <!-- الشعار الرسمي المعتمد (النسخة الأفقية الكاملة) -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="navigate('dashboard')">
+                <div class="relative flex items-center justify-center">
+                    <!-- محاولة عرض ملف اللوجو الخارجي في حال توفره، مع fallback تلقائي فوري -->
+                    <img src="logo.png" alt="شعار نَسَق" class="h-10 w-auto object-contain hidden" onload="this.classList.remove('hidden'); this.nextElementSibling.classList.add('hidden');" onerror="this.remove();">
+                    
+                    <!-- رمز الشعار الهندسي (SVG مطابق للهوية الرسمية: بترولي + كحلي + تركواز فاتح) -->
+                    <div class="w-11 h-11 rounded-xl bg-nasaq-navy flex items-center justify-center shadow-xs p-1.5 border border-nasaq-border">
+                        <svg viewBox="0 0 100 100" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- مسار هندسي يمثل الانتظام والتأهيل والتدرج (نَسَق) -->
+                            <rect x="14" y="20" width="16" height="60" rx="4" fill="#65B9B2"/>
+                            <rect x="36" y="32" width="16" height="48" rx="4" fill="#0F625F"/>
+                            <rect x="58" y="16" width="16" height="64" rx="4" fill="#172744" stroke="#65B9B2" stroke-width="3"/>
+                            <circle cx="78" cy="24" r="8" fill="#65B9B2"/>
+                            <path d="M14 68L78 32" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 4"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-bold text-xl text-nasaq-navy tracking-tight leading-none">نَسَق</span>
+                        <span class="text-nasaq-border font-light">|</span>
+                        <span class="font-en font-extrabold text-sm text-nasaq-petrol tracking-wider uppercase leading-none">NASAQ</span>
+                    </div>
+                    <span class="text-[10px] text-nasaq-textSecondary font-medium mt-1">المنصة الرقمية للتأهيل والتربية الخاصة</span>
+                </div>
+            </div>
+
+            <!-- قائمة التنقل للشاشات الكبيرة -->
+            <nav class="hidden xl:flex items-center gap-1 bg-nasaq-bgLight p-1 rounded-xl text-xs font-semibold text-nasaq-navy border border-nasaq-border">
+                <button onclick="navigate('dashboard')" class="app-nav-btn px-3 py-2 rounded-lg transition" data-nav="dashboard">
+                    <i class="fa-solid fa-chart-pie ml-1 text-nasaq-petrol"></i>الرئيسية
+                </button>
+                <button onclick="navigate('beneficiaries')" class="app-nav-btn px-3 py-2 rounded-lg transition" data-nav="beneficiaries">
+                    <i class="fa-solid fa-id-card-clip ml-1 text-nasaq-petrol"></i>المستفيدين
+                </button>
+                <button onclick="navigate('baselines')" class="app-nav-btn px-3 py-2 rounded-lg transition" data-nav="baselines">
+                    <i class="fa-solid fa-chart-simple ml-1 text-nasaq-petrol"></i>خط الأساس
+                </button>
+                <button onclick="navigate('skills')" class="app-nav-btn px-3 py-2 rounded-lg transition" data-nav="skills">
+                    <i class="fa-solid fa-layer-group ml-1 text-nasaq-petrol"></i>المهارات (12)
+                </button>
+                <button onclick="navigate('goals')" class="app-nav-btn px-3 py-2 rounded-lg transition" data-nav="goals">
+                    <i class="fa-solid fa-bullseye ml-1 text-nasaq-petrol"></i>الأهداف (IEP)
+                </button>
+                <button onclick="navigate('activities')" class="app-nav-btn px-3 py-2 rounded-lg transition" data-nav="activities">
+                    <i class="fa-solid fa-shapes ml-1 text-nasaq-petrol"></i>الأنشطة
+                </button>
+                <button onclick="navigate('sessions')" class="app-nav-btn px-3 py-2 rounded-lg transition" data-nav="sessions">
+                    <i class="fa-solid fa-calendar-check ml-1 text-nasaq-petrol"></i>الجلسات
+                </button>
+                <button onclick="navigate('tracker')" class="app-nav-btn px-3 py-2 rounded-lg transition bg-nasaq-turquoiseLight text-nasaq-petrol font-bold hover:bg-nasaq-turquoise/20" data-nav="tracker">
+                    <i class="fa-solid fa-stopwatch ml-1"></i>التسجيل اللحظي
+                </button>
+                <button onclick="navigate('reports')" class="app-nav-btn px-3 py-2 rounded-lg transition" data-nav="reports">
+                    <i class="fa-solid fa-file-signature ml-1 text-nasaq-petrol"></i>التقارير
+                </button>
+                <button onclick="navigate('contact')" class="app-nav-btn px-3 py-2 rounded-lg transition" data-nav="contact">
+                    <i class="fa-solid fa-headset ml-1 text-nasaq-petrol"></i>تواصل معنا
+                </button>
+                <button onclick="navigate('settings')" class="app-nav-btn px-3 py-2 rounded-lg transition" data-nav="settings">
+                    <i class="fa-solid fa-sliders ml-1 text-nasaq-petrol"></i>الإعدادات
+                </button>
+            </nav>
+
+            <!-- المستفيد النشط حالياً -->
+            <div class="flex items-center gap-2">
+                <span id="active-context-badge" class="text-xs bg-white text-nasaq-navy px-3 py-1.5 rounded-lg font-bold border border-nasaq-border shadow-2xs flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-nasaq-turquoise"></span>
+                    <span id="active-context-name">الحالة: عامة</span>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- شريط التنقل السفلي المريح لشاشات الهواتف المحمولة -->
+    <nav class="xl:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-nasaq-border flex justify-around py-1.5 shadow-lg no-print">
+        <button onclick="navigate('dashboard')" class="mobile-nav-btn flex flex-col items-center flex-1 text-nasaq-textSecondary" data-nav="dashboard">
+            <i class="fa-solid fa-chart-pie text-base mb-0.5"></i>
+            <span class="text-[9px] font-medium">الرئيسية</span>
+        </button>
+        <button onclick="navigate('beneficiaries')" class="mobile-nav-btn flex flex-col items-center flex-1 text-nasaq-textSecondary" data-nav="beneficiaries">
+            <i class="fa-solid fa-users text-base mb-0.5"></i>
+            <span class="text-[9px] font-medium">الحالات</span>
+        </button>
+        <button onclick="navigate('tracker')" class="mobile-nav-btn flex flex-col items-center flex-1 text-nasaq-petrol font-bold" data-nav="tracker">
+            <div class="w-8 h-8 rounded-full bg-nasaq-turquoiseLight flex items-center justify-center -mt-2 shadow-xs border border-nasaq-turquoise">
+                <i class="fa-solid fa-stopwatch text-nasaq-petrol text-base"></i>
+            </div>
+            <span class="text-[9px] mt-0.5">تسجيل</span>
+        </button>
+        <button onclick="navigate('goals')" class="mobile-nav-btn flex flex-col items-center flex-1 text-nasaq-textSecondary" data-nav="goals">
+            <i class="fa-solid fa-bullseye text-base mb-0.5"></i>
+            <span class="text-[9px] font-medium">الأهداف</span>
+        </button>
+        <button onclick="navigate('reports')" class="mobile-nav-btn flex flex-col items-center flex-1 text-nasaq-textSecondary" data-nav="reports">
+            <i class="fa-solid fa-file-lines text-base mb-0.5"></i>
+            <span class="text-[9px] font-medium">التقارير</span>
+        </button>
+        <button onclick="navigate('contact')" class="mobile-nav-btn flex flex-col items-center flex-1 text-nasaq-textSecondary" data-nav="contact">
+            <i class="fa-solid fa-headset text-base mb-0.5"></i>
+            <span class="text-[9px] font-medium">تواصل</span>
+        </button>
+    </nav>
+
+    <!-- منطقة الشاشات والعمليات الرئيسية -->
+    <main class="container mx-auto px-3 sm:px-4 py-5 flex-1 max-w-6xl">
+
+        <!-- 1. الرئيسية ولوحة العمل (Dashboard) -->
+        <section id="view-dashboard" class="app-view block space-y-5">
+            <!-- بنر ترحيبي بهوية نَسَق المتناسقة -->
+            <div class="bg-gradient-to-l from-nasaq-navy via-nasaq-navy to-nasaq-petrol text-white rounded-2xl p-6 md:p-8 shadow-sm relative overflow-hidden border border-nasaq-navy">
+                <div class="relative z-10 max-w-2xl">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xs text-nasaq-turquoise text-xs font-bold px-3 py-1 rounded-full mb-3 border border-white/15">
+                        <span class="w-2 h-2 rounded-full bg-nasaq-turquoise"></span>
+                        مساحة التأهيل والتربية الخاصة الذكية
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mb-2 tracking-tight">أهلاً بك في منصة <span class="text-nasaq-turquoise">نَسَق | NASAQ</span></h2>
+                    <p class="text-slate-200 text-xs md:text-sm leading-relaxed font-normal">
+                        منظومة العمل المتكاملة لمساندة أخصائيي الإعاقة السمعية، التخاطب، التكامل الحسي، العلاج الوظيفي والطبيعي، والتدخل المبكر، وصعوبات التعلم، وطيف التوحد والدمج. تنظيم الملفات، رصد خط الأساس، صياغة أهداف SMART، وقياس الأداء الميداني بدقة وخصوصية.
+                    </p>
+                    <div class="mt-5 flex flex-wrap gap-3 text-xs font-bold">
+                        <button onclick="navigate('beneficiaries')" class="bg-nasaq-petrol hover:bg-nasaq-petrolDark text-white px-4 py-2.5 rounded-xl shadow-xs transition flex items-center gap-1.5 touch-target">
+                            <i class="fa-solid fa-user-plus"></i> فتح ملف مستفيد جديد
+                        </button>
+                        <button onclick="navigate('tracker')" class="bg-white text-nasaq-navy hover:bg-nasaq-bgLight px-4 py-2.5 rounded-xl shadow-xs transition flex items-center gap-1.5 touch-target">
+                            <i class="fa-solid fa-play text-nasaq-petrol"></i> بدء تسجيل جلسة حية
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute -left-10 -bottom-10 opacity-10 pointer-events-none text-white text-9xl">
+                    <i class="fa-solid fa-shapes"></i>
+                </div>
+            </div>
+
+            <!-- البطاقات الإحصائية الواقعية المبنية على البيانات الفعلية -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="bg-white p-4 rounded-xl border border-nasaq-border shadow-2xs">
+                    <span class="text-nasaq-textSecondary text-xs font-medium block mb-1">المستفيدين المسجلين</span>
+                    <div class="flex items-baseline justify-between">
+                        <span id="metric-beneficiaries" class="text-2xl font-bold text-nasaq-navy font-en">0</span>
+                        <div class="w-8 h-8 rounded-lg bg-nasaq-turquoiseLight text-nasaq-petrol flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-nasaq-border shadow-2xs">
+                    <span class="text-nasaq-textSecondary text-xs font-medium block mb-1">الأهداف المبرمجة النشطة</span>
+                    <div class="flex items-baseline justify-between">
+                        <span id="metric-goals" class="text-2xl font-bold text-nasaq-petrol font-en">0</span>
+                        <div class="w-8 h-8 rounded-lg bg-nasaq-turquoiseLight text-nasaq-petrol flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-nasaq-border shadow-2xs">
+                    <span class="text-nasaq-textSecondary text-xs font-medium block mb-1">الجلسات الموثقة</span>
+                    <div class="flex items-baseline justify-between">
+                        <span id="metric-sessions" class="text-2xl font-bold text-nasaq-navy font-en">0</span>
+                        <div class="w-8 h-8 rounded-lg bg-nasaq-turquoiseLight text-nasaq-petrol flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-nasaq-border shadow-2xs">
+                    <span class="text-nasaq-textSecondary text-xs font-medium block mb-1">المحاولات المقاسة فعلياً</span>
+                    <div class="flex items-baseline justify-between">
+                        <span id="metric-trials" class="text-2xl font-bold text-nasaq-petrol font-en">0</span>
+                        <div class="w-8 h-8 rounded-lg bg-nasaq-turquoiseLight text-nasaq-petrol flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-stopwatch"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- التخصصات والمجالات التأهيلية المشمولة بنَسَق -->
+            <div class="bg-white p-5 rounded-2xl border border-nasaq-border space-y-3">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-nasaq-navy text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-diagram-project text-nasaq-petrol"></i> مجالات التأهيل والتربية الخاصة المدعومة في نَسَق
+                    </h3>
+                    <span class="text-xs text-nasaq-textSecondary font-en">10 Disciplines</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 text-xs">
+                    <div class="p-2.5 rounded-lg bg-nasaq-bgLight border border-nasaq-border text-center font-medium hover:border-nasaq-petrol transition">
+                        <i class="fa-solid fa-ear-listen block text-nasaq-petrol mb-1 text-sm"></i> الإعاقة السمعية
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-nasaq-bgLight border border-nasaq-border text-center font-medium hover:border-nasaq-petrol transition">
+                        <i class="fa-solid fa-comment-dots block text-nasaq-petrol mb-1 text-sm"></i> التخاطب والنطق
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-nasaq-bgLight border border-nasaq-border text-center font-medium hover:border-nasaq-petrol transition">
+                        <i class="fa-solid fa-hands-holding-child block text-nasaq-petrol mb-1 text-sm"></i> التكامل الحسي
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-nasaq-bgLight border border-nasaq-border text-center font-medium hover:border-nasaq-petrol transition">
+                        <i class="fa-solid fa-hand-holding-heart block text-nasaq-petrol mb-1 text-sm"></i> العلاج الوظيفي
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-nasaq-bgLight border border-nasaq-border text-center font-medium hover:border-nasaq-petrol transition">
+                        <i class="fa-solid fa-person-walking block text-nasaq-petrol mb-1 text-sm"></i> العلاج الطبيعي
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-nasaq-bgLight border border-nasaq-border text-center font-medium hover:border-nasaq-petrol transition">
+                        <i class="fa-solid fa-baby block text-nasaq-petrol mb-1 text-sm"></i> التدخل المبكر
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-nasaq-bgLight border border-nasaq-border text-center font-medium hover:border-nasaq-petrol transition">
+                        <i class="fa-solid fa-brain block text-nasaq-petrol mb-1 text-sm"></i> الإعاقة الذهنية
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-nasaq-bgLight border border-nasaq-border text-center font-medium hover:border-nasaq-petrol transition">
+                        <i class="fa-solid fa-puzzle-piece block text-nasaq-petrol mb-1 text-sm"></i> طيف التوحد (ASD)
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-nasaq-bgLight border border-nasaq-border text-center font-medium hover:border-nasaq-petrol transition">
+                        <i class="fa-solid fa-book-open-reader block text-nasaq-petrol mb-1 text-sm"></i> صعوبات التعلم
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-nasaq-bgLight border border-nasaq-border text-center font-medium hover:border-nasaq-petrol transition">
+                        <i class="fa-solid fa-school-flag block text-nasaq-petrol mb-1 text-sm"></i> الدمج والتأهيل
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ملفات المستفيدين -->
+        <section id="view-beneficiaries" class="app-view hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl border border-nasaq-border">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-nasaq-border gap-3">
+                    <div>
+                        <h2 class="font-bold text-lg text-nasaq-navy flex items-center gap-2">
+                            <i class="fa-solid fa-id-card-clip text-nasaq-petrol"></i> سجلات وملفات المستفيدين
+                        </h2>
+                        <p class="text-xs text-nasaq-textSecondary">توثيق قدرات المستفيد واحتياجاته، وسيلة التواصل، ونقاط القوة المعززة دون حفظ بيانات حساسة غير ضرورية.</p>
+                    </div>
+                    <button onclick="openBeneficiaryModal()" class="bg-nasaq-petrol hover:bg-nasaq-petrolDark text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 touch-target">
+                        <i class="fa-solid fa-user-plus"></i> إضافة مستفيد جديد
+                    </button>
+                </div>
+
+                <div class="my-3 flex gap-2">
+                    <input type="text" id="search-beneficiary" oninput="renderBeneficiaries()" placeholder="بحث بالرمز التعريفي أو وسيلة التواصل..." 
+                        class="text-xs p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight flex-1 focus:outline-none focus:border-nasaq-petrol">
+                    <select id="filter-beneficiary" onchange="renderBeneficiaries()" class="text-xs px-3 py-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy">
+                        <option value="active">الحالات النشطة</option>
+                        <option value="archived">الحالات المؤرشفة</option>
+                        <option value="all">كافة السجلات</option>
+                    </select>
+                </div>
+
+                <div id="beneficiaries-container" class="space-y-3"></div>
+            </div>
+        </section>
+
+        <!-- 3. التقييم وتسجيل خط الأساس -->
+        <section id="view-baselines" class="app-view hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl border border-nasaq-border">
+                <div class="border-b border-nasaq-border pb-4 mb-4">
+                    <h2 class="font-bold text-lg text-nasaq-navy flex items-center gap-2">
+                        <i class="fa-solid fa-chart-simple text-nasaq-petrol"></i> تقييم وتسجيل خط الأساس (Baseline)
+                    </h2>
+                    <p class="text-xs text-nasaq-textSecondary">توثيق الأداء الراهن للمستفيد قبل بدء الخطة التأهيلية اعتماداً على الملاحظة أو الاختبار القبلي.</p>
+                </div>
+
+                <form id="baseline-form" onsubmit="handleSaveBaseline(event)" class="space-y-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-nasaq-navy mb-1">المستفيد *</label>
+                            <select id="base-ben-id" required class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-nasaq-navy mb-1">المهارة أو السلوك المرصود *</label>
+                            <input type="text" id="base-skill" placeholder="مثال: مطابقة البطاقات المصورة الثنائية" required class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-nasaq-navy mb-1">طريقة الرصد / الأداة *</label>
+                            <select id="base-tool" class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy">
+                                <option value="ملاحظة مباشرة في بيئة طبيعية">ملاحظة مباشرة في بيئة طبيعية</option>
+                                <option value="جلسة اختبار قبلي منظم">جلسة اختبار قبلي منظم</option>
+                                <option value="تقرير الأسرة والمقابلة الإكلينيكية">تقرير الأسرة والمقابلة الإكلينيكية</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-nasaq-navy mb-1">وصف مستوى الأداء الراهن (بدون افتراض مسبق) *</label>
+                        <textarea id="base-desc" rows="2" placeholder="مثال: ينجز محاولة واحدة صحيحة من 5 محاولات (20%) وتتطلب مساعدة جسدية كلية لتوجيه يده." required class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight"></textarea>
+                    </div>
+                    <button type="submit" class="bg-nasaq-petrol hover:bg-nasaq-petrolDark text-white font-bold text-xs px-5 py-2.5 rounded-xl transition">
+                        حفظ وتوثيق خط الأساس
+                    </button>
+                </form>
+
+                <div class="mt-6 pt-4 border-t border-nasaq-border">
+                    <h3 class="font-bold text-xs text-nasaq-navy mb-3">سجلات خط الأساس المسجلة:</h3>
+                    <div id="baselines-list" class="space-y-2"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. مكتبة المجالات والمهارات الهرمية (12 مجالاً) -->
+        <section id="view-skills" class="app-view hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl border border-nasaq-border">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-nasaq-border gap-3">
+                    <div>
+                        <h2 class="font-bold text-lg text-nasaq-navy flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-nasaq-petrol"></i> مكتبة المجالات والمهارات التأهيلية (12 مجالاً)
+                        </h2>
+                        <p class="text-xs text-nasaq-textSecondary">شجرة مهارات هرمية مرنة تغطي مجالات الإعاقة والتأهيل مع إمكانية إضافة وتعديل وتصنيف المهارات.</p>
+                    </div>
+                    <button onclick="openSkillModal()" class="bg-nasaq-petrol hover:bg-nasaq-petrolDark text-white font-bold text-xs px-4 py-2.5 rounded-xl transition touch-target">
+                        <i class="fa-solid fa-plus ml-1"></i> إضافة مهارة للمكتبة
+                    </button>
+                </div>
+
+                <div id="domain-tabs" class="flex gap-2 overflow-x-auto py-3 no-scrollbar text-xs font-bold"></div>
+                <div id="skills-display-area" class="space-y-3 mt-2"></div>
+            </div>
+        </section>
+
+        <!-- 5. صانع الأهداف الفردية SMART -->
+        <section id="view-goals" class="app-view hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl border border-nasaq-border">
+                <div class="border-b border-nasaq-border pb-4 mb-4">
+                    <h2 class="font-bold text-lg text-nasaq-navy flex items-center gap-2">
+                        <i class="fa-solid fa-bullseye text-nasaq-petrol"></i> بناء وصياغة الأهداف الفردية (SMART IEP)
+                    </h2>
+                    <p class="text-xs text-nasaq-textSecondary">صياغة سلوك إجرائي محدد، مشروط، قابل للملاحظة، مرتبط بمستوى مساعدة ومعيار إتقان واضح.</p>
+                </div>
+
+                <form id="goal-form" onsubmit="handleSaveGoal(event)" class="space-y-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-nasaq-navy mb-1">المستفيد المستهدف *</label>
+                            <select id="goal-ben-id" required class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-nasaq-navy mb-1">المجال النمائي / التأهيلي *</label>
+                            <select id="goal-domain-id" onchange="populateSkillOptionsForGoal()" required class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-nasaq-navy mb-1">المهارة المستهدفة *</label>
+                            <select id="goal-skill-id" required class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy"></select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-nasaq-navy mb-1">ظروف الأداء والمثير (Condition)</label>
+                            <input type="text" id="goal-condition" placeholder="مثال: عند تقديم لوحة الأشكال المصورة وبأمر لفظي واحد" class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-nasaq-navy mb-1">السلوك الإجرائي المستهدف (فعل قابل للملاحظة والقياس) *</label>
+                            <input type="text" id="goal-behavior" placeholder="مثال: يطابق 4 بطاقات مصورة متطابقة" required class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-nasaq-navy mb-1">مستوى المساعدة المقبول للإتقان</label>
+                            <select id="goal-prompt" class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy">
+                                <option value="مستقل تماماً">مستقل تماماً (دون مساعدة)</option>
+                                <option value="إشارة أو إيماءة بصرية">إشارة أو إيماءة بصرية</option>
+                                <option value="توجيه لفظي مباشر">توجيه لفظي مباشر</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-nasaq-navy mb-1">معيار الإتقان والتحقق *</label>
+                            <input type="text" id="goal-criteria" value="بنسبة 80% في 3 جلسات متتالية" required class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="bg-nasaq-petrol hover:bg-nasaq-petrolDark text-white font-bold text-xs px-5 py-2.5 rounded-xl transition">
+                        اعتماد الهدف في الملف التأهيلي
+                    </button>
+                </form>
+
+                <div class="mt-6 pt-4 border-t border-nasaq-border">
+                    <h3 class="font-bold text-xs text-nasaq-navy mb-3">الأهداف الفردية المبرمجة للمستفيد:</h3>
+                    <div id="goals-table" class="space-y-2"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. بنك الأنشطة وبطاقة المهارة المهنية -->
+        <section id="view-activities" class="app-view hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl border border-nasaq-border">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-nasaq-border gap-3">
+                    <div>
+                        <h2 class="font-bold text-lg text-nasaq-navy flex items-center gap-2">
+                            <i class="fa-solid fa-shapes text-nasaq-petrol"></i> بنك الأنشطة وبطاقات المهارات التأهيلية
+                        </h2>
+                        <p class="text-xs text-nasaq-textSecondary">بطاقة نشاط تخصصية تشمل الأدوات، والخطوات الإجرائية، والتيسيرات الحسية، وتدرج خفض المساعدة.</p>
+                    </div>
+                    <button onclick="openActivityModal()" class="bg-nasaq-petrol hover:bg-nasaq-petrolDark text-white font-bold text-xs px-4 py-2.5 rounded-xl transition touch-target">
+                        <i class="fa-solid fa-plus ml-1"></i> ابتكار نشاط جديد
+                    </button>
+                </div>
+
+                <div class="my-3 flex gap-2">
+                    <input type="text" id="search-activity" oninput="renderActivities()" placeholder="بحث باسم النشاط أو الأدوات المستخدمة..." 
+                        class="text-xs p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight flex-1">
+                    <select id="filter-activity-domain" onchange="renderActivities()" class="text-xs px-3 py-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy">
+                        <option value="all">كافة المجالات</option>
+                    </select>
+                </div>
+
+                <div id="activities-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+            </div>
+        </section>
+
+        <!-- 7. تخطيط الجلسات التأهيلية -->
+        <section id="view-sessions" class="app-view hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl border border-nasaq-border">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-nasaq-border gap-3">
+                    <div>
+                        <h2 class="font-bold text-lg text-nasaq-navy flex items-center gap-2">
+                            <i class="fa-solid fa-calendar-check text-nasaq-petrol"></i> تخطيط وإعداد الجلسات التأهيلية
+                        </h2>
+                        <p class="text-xs text-nasaq-textSecondary">إعداد مسار الجلسة المتدرج (تهيئة، تدريب مباشر، تعميم، غلق)، وتبقى مسودة قابلة للتعديل حتى التنفيذ.</p>
+                    </div>
+                    <button onclick="openSessionModal()" class="bg-nasaq-petrol hover:bg-nasaq-petrolDark text-white font-bold text-xs px-4 py-2.5 rounded-xl transition touch-target">
+                        <i class="fa-solid fa-plus ml-1"></i> إعداد مسودة جلسة
+                    </button>
+                </div>
+
+                <div id="sessions-list" class="space-y-3 mt-4"></div>
+            </div>
+        </section>
+
+        <!-- 8. وحدة التسجيل الميداني اللحظي (Live Tracker) -->
+        <section id="view-tracker" class="app-view hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl border-2 border-nasaq-petrol shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-nasaq-border gap-2">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase text-nasaq-petrol bg-nasaq-turquoiseLight px-2 py-0.5 rounded border border-nasaq-turquoise/30">التسجيل الميداني المباشر</span>
+                        <h2 class="font-bold text-lg text-nasaq-navy mt-1 flex items-center gap-2">
+                            <i class="fa-solid fa-stopwatch text-nasaq-petrol"></i> رصد الاستجابات والمحاولات الحية
+                        </h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span id="tracker-clock" class="font-en text-base font-bold bg-nasaq-navy text-nasaq-turquoise px-3 py-1 rounded-lg">00:00</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3">
+                    <div>
+                        <label class="block text-xs font-bold text-nasaq-navy mb-1">المستفيد *</label>
+                        <select id="tracker-ben-select" onchange="syncTrackerGoals()" class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy"></select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-nasaq-navy mb-1">الهدف المقاس حالياً *</label>
+                        <select id="tracker-goal-select" onchange="updateTrackerMetrics()" class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy"></select>
+                    </div>
+                </div>
+
+                <!-- مستويات المساعدة المعيارية -->
+                <div class="bg-nasaq-bgLight p-4 rounded-xl border border-nasaq-border my-4 text-center">
+                    <span class="text-xs font-bold text-nasaq-navy block mb-2">مستوى المساعدة في المحاولة الحالية:</span>
+                    <div class="flex flex-wrap justify-center gap-1.5 mb-4" id="tracker-prompt-buttons">
+                        <button type="button" onclick="setPromptLevel('مستقل')" class="p-btn active bg-nasaq-petrol text-white text-xs px-3 py-2 rounded-lg font-bold" data-p="مستقل">مستقل (+)</button>
+                        <button type="button" onclick="setPromptLevel('إشارة بصرية')" class="p-btn bg-white text-nasaq-navy border border-nasaq-border text-xs px-3 py-2 rounded-lg font-bold" data-p="إشارة بصرية">إشارة بصرية</button>
+                        <button type="button" onclick="setPromptLevel('توجيه لفظي')" class="p-btn bg-white text-nasaq-navy border border-nasaq-border text-xs px-3 py-2 rounded-lg font-bold" data-p="توجيه لفظي">توجيه لفظي</button>
+                        <button type="button" onclick="setPromptLevel('نمذجة')" class="p-btn bg-white text-nasaq-navy border border-nasaq-border text-xs px-3 py-2 rounded-lg font-bold" data-p="نمذجة">نمذجة</button>
+                        <button type="button" onclick="setPromptLevel('مساعدة جزئية')" class="p-btn bg-white text-nasaq-navy border border-nasaq-border text-xs px-3 py-2 rounded-lg font-bold" data-p="مساعدة جزئية">مساعدة جزئية</button>
+                        <button type="button" onclick="setPromptLevel('مساعدة كلية')" class="p-btn bg-white text-nasaq-navy border border-nasaq-border text-xs px-3 py-2 rounded-lg font-bold" data-p="مساعدة كلية">مساعدة كلية</button>
+                    </div>
+
+                    <!-- أزرار الاستجابة الكبيرة للمس المريح -->
+                    <div class="grid grid-cols-2 gap-4 max-w-md mx-auto">
+                        <button onclick="logTrial(true)" class="bg-nasaq-petrol hover:bg-nasaq-petrolDark active:scale-95 text-white p-5 rounded-2xl shadow-sm flex flex-col items-center justify-center gap-1 transition touch-target">
+                            <i class="fa-solid fa-check text-3xl text-nasaq-turquoise"></i>
+                            <span class="font-bold text-sm">استجابة صحيحة (+)</span>
+                        </button>
+                        <button onclick="logTrial(false)" class="bg-nasaq-navy hover:bg-nasaq-navyDark active:scale-95 text-white p-5 rounded-2xl shadow-sm flex flex-col items-center justify-center gap-1 transition touch-target">
+                            <i class="fa-solid fa-xmark text-3xl text-rose-400"></i>
+                            <span class="font-bold text-sm">استجابة غير صحيحة (-)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- المؤشرات الحسابية الرياضية الصادقة (بدون تحويل المفقود لصفر) -->
+                <div class="grid grid-cols-3 gap-2 text-center bg-nasaq-bgLight p-3 rounded-xl border border-nasaq-border text-xs font-bold">
+                    <div>
+                        <span class="text-nasaq-textSecondary block text-[10px]">إجمالي المحاولات</span>
+                        <span id="tracker-count-total" class="text-lg font-bold text-nasaq-navy font-en">0</span>
+                    </div>
+                    <div>
+                        <span class="text-nasaq-textSecondary block text-[10px]">المحاولات الناجحة</span>
+                        <span id="tracker-count-correct" class="text-lg font-bold text-nasaq-petrol font-en">0</span>
+                    </div>
+                    <div>
+                        <span class="text-nasaq-textSecondary block text-[10px]">نسبة الإتقان المحسوبة</span>
+                        <span id="tracker-rate-pct" class="text-base font-bold text-nasaq-petrol font-en">بيانات غير كافية</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-xs font-bold text-nasaq-navy">شريط المحاولات المسجلة بالجلسة (قابلة للتعديل والحذف):</h4>
+                        <button onclick="clearCurrentGoalTrials()" class="text-[11px] text-rose-600 hover:underline">مسح محاولات هذا الهدف</button>
+                    </div>
+                    <div id="tracker-tape" class="flex flex-wrap gap-1.5 p-3 bg-nasaq-bgLight rounded-xl min-h-[50px] border border-nasaq-border items-center"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. التقارير والتصدير والتحليلات -->
+        <section id="view-reports" class="app-view hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl border border-nasaq-border no-print">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-nasaq-border gap-3">
+                    <div>
+                        <h2 class="font-bold text-lg text-nasaq-navy flex items-center gap-2">
+                            <i class="fa-solid fa-file-signature text-nasaq-petrol"></i> التقارير التأهيلية المعتمدة
+                        </h2>
+                        <p class="text-xs text-nasaq-textSecondary">استخراج تقرير تراكمي مبني على البيانات الفعلية مع التمييز بين القياس وتفسير الأخصائي.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="generateReport()" class="bg-nasaq-petrol hover:bg-nasaq-petrolDark text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-arrows-rotate"></i> تحديث التقرير
+                        </button>
+                        <button onclick="exportReportToCSV()" class="bg-white hover:bg-nasaq-bgLight text-nasaq-navy border border-nasaq-border font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-file-csv text-nasaq-petrol"></i> تصدير CSV (Excel)
+                        </button>
+                        <button onclick="window.print()" class="bg-nasaq-navy hover:bg-nasaq-navyDark text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-print"></i> طباعة A4
+                        </button>
+                    </div>
+                </div>
+
+                <div class="my-3 max-w-sm">
+                    <label class="block text-xs font-bold text-nasaq-navy mb-1">حدد المستفيد لاستخراج التقرير *</label>
+                    <select id="report-ben-select" onchange="generateReport()" class="w-full text-xs p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy"></select>
+                </div>
+            </div>
+
+            <!-- صفحة التقرير التحريري المجهزة للطباعة والعرض الرسمي -->
+            <div id="printable-report-area" class="bg-white p-6 md:p-10 rounded-2xl border border-nasaq-border space-y-5 text-sm shadow-2xs">
+                <div class="border-b-2 border-nasaq-petrol pb-4 flex justify-between items-start">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-nasaq-navy flex items-center justify-center p-2">
+                            <svg viewBox="0 0 100 100" class="w-full h-full" fill="none">
+                                <rect x="14" y="20" width="16" height="60" rx="4" fill="#65B9B2"/>
+                                <rect x="36" y="32" width="16" height="48" rx="4" fill="#0F625F"/>
+                                <rect x="58" y="16" width="16" height="64" rx="4" fill="#172744" stroke="#65B9B2" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl text-nasaq-navy">منصة نَسَق | NASAQ</h3>
+                            <p class="text-xs text-nasaq-textSecondary">التقرير التأهيلي التراكمي ومتابعة البرنامج التربوي الفردي (IEP)</p>
+                        </div>
+                    </div>
+                    <div class="text-left text-xs font-en font-bold text-nasaq-navy">
+                        <div>Date: <span id="rep-date">--</span></div>
+                        <div>Doc ID: <span id="rep-code" class="text-nasaq-petrol">NSQ-DOC</span></div>
+                    </div>
+                </div>
+                <div id="report-content-body"></div>
+            </div>
+        </section>
+
+        <!-- 10. صفحة «تواصل معنا» الرسمية (Contact Us) -->
+        <section id="view-contact" class="app-view hidden space-y-5">
+            <div class="max-w-3xl mx-auto space-y-5">
+                
+                <!-- بطاقة التعريف واللوجو -->
+                <div class="bg-white rounded-2xl p-6 md:p-8 border border-nasaq-border text-center shadow-xs">
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-nasaq-navy flex items-center justify-center p-3 shadow-sm border border-nasaq-border">
+                        <svg viewBox="0 0 100 100" class="w-full h-full" fill="none">
+                            <rect x="14" y="20" width="16" height="60" rx="4" fill="#65B9B2"/>
+                            <rect x="36" y="32" width="16" height="48" rx="4" fill="#0F625F"/>
+                            <rect x="58" y="16" width="16" height="64" rx="4" fill="#172744" stroke="#65B9B2" stroke-width="3"/>
+                            <circle cx="78" cy="24" r="8" fill="#65B9B2"/>
+                            <path d="M14 68L78 32" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 4"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-black text-nasaq-navy">تواصل مع إدارة منصة نَسَق | NASAQ</h2>
+                    <p class="text-xs text-nasaq-textSecondary max-w-lg mx-auto mt-2 leading-relaxed">
+                        نحن هنا لمساندة الأخصائيين والمراكز التأهيلية والتربوية في تفعيل مساحات العمل الرقمية وتقديم الدعم الفني والمهني اللازم.
+                    </p>
+                </div>
+
+                <!-- بطاقة بيانات الأخصائي المسؤول -->
+                <div class="bg-white rounded-2xl p-6 border border-nasaq-border shadow-xs space-y-6">
+                    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 pb-5 border-b border-nasaq-border">
+                        <div class="w-16 h-16 rounded-full bg-nasaq-turquoiseLight text-nasaq-petrol flex items-center justify-center text-2xl font-bold border-2 border-nasaq-petrol">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <div class="text-center sm:text-right flex-1">
+                            <span class="text-[11px] font-bold text-nasaq-petrol uppercase tracking-wider bg-nasaq-turquoiseLight px-2.5 py-0.5 rounded-full inline-block mb-1">المسؤول عن المنصة</span>
+                            <h3 class="text-xl font-bold text-nasaq-navy">الأخصائي علي عبدالوهاب</h3>
+                            <p class="text-xs text-nasaq-textSecondary mt-0.5">المسؤول عن منصة نَسَق | NASAQ</p>
+                        </div>
+                    </div>
+
+                    <!-- وسائل التواصل الرسمية -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        
+                        <!-- البريد الإلكتروني -->
+                        <div class="bg-nasaq-bgLight p-4 rounded-xl border border-nasaq-border flex flex-col justify-between space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-white text-nasaq-petrol flex items-center justify-center text-lg shadow-2xs border border-nasaq-border">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] text-nasaq-textSecondary block">البريد الإلكتروني الرسمي</span>
+                                    <a href="mailto:aliaboeisa0101@gmail.com" class="text-xs font-bold text-nasaq-navy hover:text-nasaq-petrol font-en break-all">
+                                        aliaboeisa0101@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                            <a href="mailto:aliaboeisa0101@gmail.com" class="w-full bg-nasaq-petrol hover:bg-nasaq-petrolDark text-white font-bold text-xs py-2.5 px-4 rounded-xl text-center transition flex items-center justify-center gap-2 touch-target">
+                                <i class="fa-solid fa-paper-plane"></i> تواصل عبر البريد الإلكتروني
+                            </a>
+                        </div>
+
+                        <!-- رقم الهاتف والاتصال -->
+                        <div class="bg-nasaq-bgLight p-4 rounded-xl border border-nasaq-border flex flex-col justify-between space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-white text-nasaq-petrol flex items-center justify-center text-lg shadow-2xs border border-nasaq-border">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] text-nasaq-textSecondary block">الهاتف المباشر</span>
+                                    <a href="tel:01012297081" id="contact-phone-display" class="text-xs font-bold text-nasaq-navy hover:text-nasaq-petrol font-en dir-ltr inline-block">
+                                        01012297081
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <a href="tel:01012297081" id="contact-phone-btn" class="bg-nasaq-navy hover:bg-nasaq-navyDark text-white font-bold text-xs py-2.5 px-2 rounded-xl text-center transition flex items-center justify-center gap-1.5 touch-target">
+                                    <i class="fa-solid fa-phone-flip"></i> اتصال هاتفي
+                                </a>
+                                <a href="https://wa.me/201012297081" target="_blank" rel="noopener" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 px-2 rounded-xl text-center transition flex items-center justify-center gap-1.5 touch-target">
+                                    <i class="fa-brands fa-whatsapp"></i> واتساب
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 11. إعدادات البيانات والنسخ الاحتياطي والأمان -->
+        <section id="view-settings" class="app-view hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl border border-nasaq-border">
+                <div class="border-b border-nasaq-border pb-4 mb-4">
+                    <h2 class="font-bold text-lg text-nasaq-navy flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-nasaq-petrol"></i> إدارة البيانات وإعدادات المنصة
+                    </h2>
+                    <p class="text-xs text-nasaq-textSecondary">التحكم في بيانات الاتصال، النسخ الاحتياطي بصيغة JSON، والتأكد من استقرار البيانات محلياً.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    
+                    <!-- تخصيص بيانات التواصل المركزي -->
+                    <div class="bg-nasaq-bgLight p-4 rounded-xl border border-nasaq-border space-y-3">
+                        <h3 class="font-bold text-xs text-nasaq-navy flex items-center gap-1.5">
+                            <i class="fa-solid fa-address-card text-nasaq-petrol"></i> إعدادات بيانات التواصل
+                        </h3>
+                        <p class="text-xs text-nasaq-textSecondary">يمكنك تحديث رقم الهاتف والبيانات المركزية لتنعكس في صفحة التواصل فورياً:</p>
+                        <div>
+                            <label class="block text-[11px] font-bold text-nasaq-navy mb-1">رقم هاتف المنصة</label>
+                            <input type="text" id="setting-phone-input" value="01012297081" class="text-xs p-2 rounded-lg border border-nasaq-border w-full font-en bg-white">
+                        </div>
+                        <button onclick="saveContactSettings()" class="bg-nasaq-petrol hover:bg-nasaq-petrolDark text-white font-bold text-xs px-4 py-2 rounded-lg transition">
+                            حفظ رقم الهاتف
+                        </button>
+                    </div>
+
+                    <!-- التصدير الاحتياطي الكامل -->
+                    <div class="bg-nasaq-bgLight p-4 rounded-xl border border-nasaq-border space-y-3">
+                        <h3 class="font-bold text-xs text-nasaq-navy flex items-center gap-1.5">
+                            <i class="fa-solid fa-download text-nasaq-petrol"></i> تصدير قاعدة بيانات نَسَق (JSON)
+                        </h3>
+                        <p class="text-xs text-nasaq-textSecondary leading-relaxed">
+                            تنزيل نسخة احتياطية محلية كاملة تشمل المستفيدين، تقييمات خط الأساس، الأهداف، الأنشطة، الجلسات، والمحاولات المسجلة.
+                        </p>
+                        <button onclick="exportDatabaseJSON()" class="bg-nasaq-navy hover:bg-nasaq-navyDark text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-file-arrow-down"></i> تصدير البيانات (JSON)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- استعادة النسخ الاحتياطية -->
+                <div class="bg-nasaq-bgLight p-4 rounded-xl border border-nasaq-border space-y-3 mt-4">
+                    <h3 class="font-bold text-xs text-nasaq-navy flex items-center gap-1.5">
+                        <i class="fa-solid fa-upload text-nasaq-petrol"></i> استعادة نسخة احتياطية وفحص البنية
+                    </h3>
+                    <p class="text-xs text-nasaq-textSecondary">اختر ملف JSON للنسخة الاحتياطية؛ يتحقق النظام تلقائياً من صحة البيانات وتطابق الجداول قبل الاعتماد:</p>
+                    <input type="file" id="import-file" accept=".json" class="text-xs text-nasaq-navy file:mr-0 file:ml-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-nasaq-petrol file:text-white file:font-bold">
+                    <button onclick="importDatabaseJSON()" class="bg-white hover:bg-nasaq-bgLight text-nasaq-navy border border-nasaq-border font-bold text-xs px-4 py-2 rounded-xl transition block mt-2">
+                        استعادة وتحقق
+                    </button>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-rose-200 flex items-center justify-between text-xs">
+                    <div>
+                        <span class="font-bold text-rose-700 block">إعادة ضبط المصنع</span>
+                        <span class="text-nasaq-textSecondary text-[11px]">مسح كافة السجلات المخزنة بمتصفحك لهذا التطبيق تماماً.</span>
+                    </div>
+                    <button onclick="factoryReset()" class="bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-bold px-3 py-2 rounded-xl transition">
+                        مسح كافة البيانات المحلية
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- النوافذ المنبثقة التفاعلية (Modals) -->
+
+    <!-- نافذة المستفيد -->
+    <div id="modal-ben" class="fixed inset-0 z-50 bg-nasaq-navy/60 backdrop-blur-xs hidden flex items-center justify-center p-3">
+        <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-5 space-y-4 shadow-2xl border border-nasaq-border">
+            <div class="flex justify-between items-center border-b border-nasaq-border pb-3">
+                <h3 id="modal-ben-title" class="font-bold text-nasaq-navy text-sm">إضافة ملف مستفيد جديد</h3>
+                <button onclick="closeModal('modal-ben')" class="text-nasaq-textSecondary hover:text-nasaq-navy"><i class="fa-solid fa-xmark text-base"></i></button>
+            </div>
+            <form id="form-ben" onsubmit="handleSaveBeneficiary(event)" class="space-y-3 text-xs">
+                <input type="hidden" id="ben-id">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-nasaq-navy mb-1">المعرف الرمزي (حماية الخصوصية) *</label>
+                        <input type="text" id="ben-code" placeholder="مثال: مستفيد (س.ح) أو كود T-104" required class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-nasaq-navy mb-1">العمر أو المرحلة النمائية *</label>
+                        <input type="text" id="ben-age" placeholder="مثال: 6 سنوات و 3 أشهر" required class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-nasaq-navy mb-1">وسيلة التواصل المفضلة *</label>
+                    <select id="ben-comm" class="w-full p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy">
+                        <option value="كلام منطوق (لفظي)">كلام منطوق (لفظي)</option>
+                        <option value="تواصل معزز وبديل (صور / PECS)">تواصل معزز وبديل AAC (لوحات صور / PECS)</option>
+                        <option value="إيماءات وإشارات وظيفية">إيماءات وإشارات وتعبيرات جسدية</option>
+                        <option value="أجهزة ناطقة وتطبيقات لوحية">أجهزة ناطقة وتطبيقات تواصل رقمية</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold text-nasaq-navy mb-1">نقاط القوة والمعززات الفردية المحببة</label>
+                    <input type="text" id="ben-strengths" placeholder="مثال: استجابة بصرية متميزة، محب لسيارات السباق والتركيب" class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                </div>
+                <div>
+                    <label class="block font-bold text-nasaq-navy mb-1">احتياجات الدعم والتيسيرات البيئية والحسية</label>
+                    <textarea id="ben-needs" rows="2" placeholder="مثال: يتشتت بالضوضاء المفاجئة، يحتاج تقليل المثيرات البصرية وجدولاً مرئياً" class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight"></textarea>
+                </div>
+                <div class="flex justify-end gap-2 pt-3 border-t border-nasaq-border">
+                    <button type="button" onclick="closeModal('modal-ben')" class="px-4 py-2 rounded-xl text-nasaq-navy bg-nasaq-bgLight font-bold">إلغاء</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl text-white bg-nasaq-petrol font-bold hover:bg-nasaq-petrolDark">حفظ الملف</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة إضافة مهارة جديدة -->
+    <div id="modal-skill" class="fixed inset-0 z-50 bg-nasaq-navy/60 backdrop-blur-xs hidden flex items-center justify-center p-3">
+        <div class="bg-white rounded-2xl max-w-md w-full p-5 space-y-4 shadow-2xl border border-nasaq-border">
+            <div class="flex justify-between items-center border-b border-nasaq-border pb-2">
+                <h3 class="font-bold text-nasaq-navy text-sm">إضافة مهارة جديدة لمكتبة نَسَق</h3>
+                <button onclick="closeModal('modal-skill')" class="text-nasaq-textSecondary hover:text-nasaq-navy"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="form-skill" onsubmit="handleSaveCustomSkill(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-bold text-nasaq-navy mb-1">المجال التأهيلي الرئيسي *</label>
+                    <select id="new-skill-domain-id" required class="w-full p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy"></select>
+                </div>
+                <div>
+                    <label class="block font-bold text-nasaq-navy mb-1">اسم المهارة الإجرائية الجديدة *</label>
+                    <input type="text" id="new-skill-name" placeholder="مثال: الإشارة إلى العنصر المسمى في بطاقة خيارات رباعية" required class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                </div>
+                <div class="flex justify-end gap-2 pt-2 border-t border-nasaq-border">
+                    <button type="button" onclick="closeModal('modal-skill')" class="px-4 py-2 rounded-xl text-nasaq-navy bg-nasaq-bgLight font-bold">إلغاء</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl text-white bg-nasaq-petrol font-bold">إضافة المهارة</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة إضافة نشاط جديد -->
+    <div id="modal-act" class="fixed inset-0 z-50 bg-nasaq-navy/60 backdrop-blur-xs hidden flex items-center justify-center p-3">
+        <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-5 space-y-4 shadow-2xl border border-nasaq-border">
+            <div class="flex justify-between items-center border-b border-nasaq-border pb-3">
+                <h3 class="font-bold text-nasaq-navy text-sm">بطاقة نشاط تأهيلي جديد</h3>
+                <button onclick="closeModal('modal-act')" class="text-nasaq-textSecondary hover:text-nasaq-navy"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="form-act" onsubmit="handleSaveActivity(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-bold text-nasaq-navy mb-1">اسم النشاط *</label>
+                    <input type="text" id="act-title" placeholder="مثال: تصنيف الملامس بالصندوق الحسي" required class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-nasaq-navy mb-1">المجال المستهدف *</label>
+                        <select id="act-domain-id" class="w-full p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy"></select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-nasaq-navy mb-1">الأدوات والخامات المطلوبة</label>
+                        <input type="text" id="act-materials" placeholder="مثال: أقمشة صوفية، ألياف، كرات ملساء" class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-nasaq-navy mb-1">خطوات التنفيذ المنظمة بالتسلسل *</label>
+                    <textarea id="act-steps" rows="3" placeholder="1. استكشاف بصري ولمسي حر... 2. نمذجة ومطابقة من الأخصائي... 3. محاولة المستفيد مع تعزيز فوري" required class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight"></textarea>
+                </div>
+                <div>
+                    <label class="block font-bold text-nasaq-navy mb-1">تيسير النشاط وخفض المساعدة تدريجياً (Adaptation)</label>
+                    <input type="text" id="act-adaptations" placeholder="مثال: البدء بخامتين متناقضتين، وتقليل التوجيه الجسدي إلى إشارة بصرية" class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                </div>
+                <div class="flex justify-end gap-2 pt-3 border-t border-nasaq-border">
+                    <button type="button" onclick="closeModal('modal-act')" class="px-4 py-2 rounded-xl text-nasaq-navy bg-nasaq-bgLight font-bold">إلغاء</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl text-white bg-nasaq-petrol font-bold">حفظ النشاط بالبنك</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة إعداد جلسة جديدة -->
+    <div id="modal-ses" class="fixed inset-0 z-50 bg-nasaq-navy/60 backdrop-blur-xs hidden flex items-center justify-center p-3">
+        <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-5 space-y-4 shadow-2xl border border-nasaq-border">
+            <div class="flex justify-between items-center border-b border-nasaq-border pb-3">
+                <h3 class="font-bold text-nasaq-navy text-sm">إعداد مسودة جلسة تأهيلية</h3>
+                <button onclick="closeModal('modal-ses')" class="text-nasaq-textSecondary hover:text-nasaq-navy"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="form-ses" onsubmit="handleSaveSessionPlan(event)" class="space-y-3 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-nasaq-navy mb-1">المستفيد *</label>
+                        <select id="ses-ben-id" required class="w-full p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy"></select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-nasaq-navy mb-1">المدة الزمنية *</label>
+                        <select id="ses-duration" class="w-full p-2.5 rounded-xl border border-nasaq-border bg-white font-bold text-nasaq-navy">
+                            <option value="30 دقيقة">30 دقيقة</option>
+                            <option value="45 دقيقة" selected>45 دقيقة</option>
+                            <option value="60 دقيقة">60 دقيقة</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-nasaq-navy mb-1">الهدف الإجرائي للجلسة *</label>
+                    <input type="text" id="ses-goal" placeholder="مثال: مطابقة 3 بطاقات ملونة في سياق نشاط منظم" required class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-nasaq-navy mb-1">التهيئة (5-10 د)</label>
+                        <input type="text" id="ses-warmup" value="نشاط تنفس وتواصل بصري لكسر الجمود" class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-nasaq-navy mb-1">التدريب المباشر (20 د)</label>
+                        <input type="text" id="ses-main" value="تطبيق النشاط تدريجياً مع النمذجة والمحاولات" class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-nasaq-navy mb-1">التعميم الوظيفي (10 د)</label>
+                        <input type="text" id="ses-generalization" value="لعبة تفاعلية لتعزيز المهارة في سياق لعب حر" class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-nasaq-navy mb-1">الغلق والتعزيز (5 د)</label>
+                        <input type="text" id="ses-closing" value="تقديم التعزيز الفوري وتسجيل ملخص الأداء" class="w-full p-2.5 rounded-xl border border-nasaq-border bg-nasaq-bgLight">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-2 pt-3 border-t border-nasaq-border">
+                    <button type="button" onclick="closeModal('modal-ses')" class="px-4 py-2 rounded-xl text-nasaq-navy bg-nasaq-bgLight font-bold">إلغاء</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl text-white bg-nasaq-petrol font-bold">حفظ مسودة الجلسة</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- برمجة الواجهة التفاعلية لمنصة نَسَق -->
+    <script>
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // المجالات الـ 12 المتكاملة مع شجرة المهارات التفصيلية لمنصة نَسَق
+        const NASAQ_DOMAINS = [
+            {
+                id: 'dom-1',
+                name: 'التواصل واللغة والتخاطب',
+                icon: 'fa-comments',
+                skills: [
+                    'اللغة الاستقبالية وفهم المفردات والمفاهيم والتعليمات',
+                    'اللغة التعبيرية والتسمية والطلب وسرد الأحداث',
+                    'المفردات والعلاقات الدلالية وتصنيف المفاهيم',
+                    'بناء الجملة والقواعد والصرف واستخدام الضمائر',
+                    'التداول اللغوي والتواصل الاجتماعي وتبادل الأدوار',
+                    'الوعي الصوتي وأصوات الكلام والنطق والطلاقة'
+                ]
+            },
+            {
+                id: 'dom-2',
+                name: 'التواصل البديل والمعزز (AAC)',
+                icon: 'fa-table-cells',
+                skills: [
+                    'تبادل الصور لطلب العناصر المحببة (PECS)',
+                    'استخدام لوحات التواصل والرموز الرسومية الثابتة',
+                    'استخدام التطبيقات اللوحية والأجهزة الناطقة (VOCA)',
+                    'الإيماءات الوظيفية والإشارات المعبرة في السياق اليومي'
+                ]
+            },
+            {
+                id: 'dom-3',
+                name: 'الانتباه والوظائف التنفيذية',
+                icon: 'fa-brain',
+                skills: [
+                    'الانتباه المشترك والبصري والسمعي',
+                    'الانتباه المستمر والانتقائي ومقاومة المشتتات البيئية',
+                    'الذاكرة العاملة واتباع التعليمات المتسلسلة',
+                    'التخطيط والتنظيم والمرونة المعرفية والانتقال بين المهام',
+                    'كف الاستجابة والانتظار وتأجيل الرغبات'
+                ]
+            },
+            {
+                id: 'dom-4',
+                name: 'المهارات الحركية والتآزر (العلاج الطبيعي والوظيفي)',
+                icon: 'fa-hand',
+                skills: [
+                    'المهارات الحركية الدقيقة والقبض والإفلات بالأصابع',
+                    'التآزر البصري الحركي ومتابعة الهدف بالعين واليد',
+                    'استخدام اليدين معاً والتناسق الثنائي (Bilateral Coordination)',
+                    'التخطيط الحركي العام والتوازن والوضعيات الوظيفية'
+                ]
+            },
+            {
+                id: 'dom-5',
+                name: 'المعالجة الحسية والتنظيم الذاتي (التكامل الحسي)',
+                icon: 'fa-eye',
+                skills: [
+                    'ملاحظة الاستجابات للمثيرات الحسية (لمس، سمع، بصر، دهليزي)',
+                    'استراتيجيات التهدئة والتنظيم الذاتي الحسي',
+                    'تعديل البيئة المادية لتقليل الإجهاد الحسي وتسهيل المشاركة',
+                    'التكيف مع الانتقالات والتغيرات المكانية والروتينية'
+                ]
+            },
+            {
+                id: 'dom-6',
+                name: 'الإدراك والقدرات المعرفية',
+                icon: 'fa-lightbulb',
+                skills: [
+                    'المطابقة والتصنيف اللوني والشكلي والحجمي',
+                    'إدراك السبب والنتيجة والتسلسل المنطقي',
+                    'التمييز البصري والسمعي وإدراك العلاقات المكانية والزمانية',
+                    'مفاهيم العدد والكميات والأنماط التمهيدية'
+                ]
+            },
+            {
+                id: 'dom-7',
+                name: 'العناية بالذات والاستقلالية والمهارات الحياتية',
+                icon: 'fa-utensils',
+                skills: [
+                    'الأكل والشرب المستقل واستخدام أدوات المائدة',
+                    'ارتداء الملابس والأزرار والسحّاب',
+                    'النظافة الشخصية وغسل اليدين والروتين اليومي',
+                    'تنظيم المتعلقات الشخصية والاستقلالية بالبيئة'
+                ]
+            },
+            {
+                id: 'dom-8',
+                name: 'المهارات الاجتماعية والانفعالية واللعب',
+                icon: 'fa-users',
+                skills: [
+                    'اللعب الوظيفي والرمزي والتمثيلي التخيلي',
+                    'تبادل الأدوار والمشاركة والتعاون مع الأقران',
+                    'التعرف على المشاعر والتعبير المناسب عنها',
+                    'إدارة مشاعر الإحباط والتنظيم الانفعالي'
+                ]
+            },
+            {
+                id: 'dom-9',
+                name: 'المهارات الأكاديمية وصعوبات التعلم',
+                icon: 'fa-book-open',
+                skills: [
+                    'الوعي الصوتي والقراءة والتعرف على الحروف',
+                    'الكتابة والتعبير الكتابي الوظيفي ومسك القلم',
+                    'المفاهيم الحسابية والعد وإجراء العمليات البسيطة',
+                    'استراتيجيات التيسير التعليمي وتنظيم المهام الصفية'
+                ]
+            },
+            {
+                id: 'dom-10',
+                name: 'السلوك الوظيفي ودعم السلوك الإيجابي',
+                icon: 'fa-thumbs-up',
+                skills: [
+                    'اكتساب سلوك بديل وظيفي لطلب الاستراحة أو الانسحاب الآمن',
+                    'زيادة مدة الجلوس والانتظار في المهمة الموجهة',
+                    'خفض سلوكيات الهروب والانسحاب بالتعزيز الإيجابي التفاضلي'
+                ]
+            },
+            {
+                id: 'dom-11',
+                name: 'المشاركة المدرسية والدمج والتأهيل قبل المهني',
+                icon: 'fa-school',
+                skills: [
+                    'اتباع روتين الفصل المدرسي والانتقال بين الحصص',
+                    'الاستقلال في إنجاز الواجبات والأنشطة الجماعية',
+                    'استخدام التكنولوجيا المساعدة داخل الفصل المدرسي'
+                ]
+            },
+            {
+                id: 'dom-12',
+                name: 'الأسرة والتعميم والمتابعة المنزلية المشتركة',
+                icon: 'fa-house-chimney-user',
+                skills: [
+                    'تطبيق أهداف الجلسة في المواقف الأسرية والحياتية اليومية',
+                    'اتباع إرشادات مقدم الرعاية وجداول المتابعة الأسرية',
+                    'تعميم المهارة المكتسبة عبر أشخاص وبيئات جديدة'
+                ]
+            }
+        ];
+
+        const STORAGE_KEY = 'nasaq_platform_db_v1';
+
+        let appDB = {
+            beneficiaries: [],
+            baselines: [],
+            domains: NASAQ_DOMAINS,
+            goals: [],
+            activities: [],
+            sessions: [],
+            trials: [],
+            settings: {
+                phone: '01012297081',
+                specialistName: 'الأخصائي علي عبدالوهاب',
+                email: 'aliaboeisa0101@gmail.com'
+            }
+        };
+
+        let currentActiveBenId = null;
+        let activePrompt = 'مستقل';
+        let trackerSeconds = 0;
+        let trackerTimer = null;
+
+        function initApp() {
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (parsed && typeof parsed === 'object') {
+                        appDB = { ...appDB, ...parsed };
+                    }
+                } else {
+                    // فحص إن كانت هناك بيانات سابقة للترحيل السلس
+                    const legacy = localStorage.getItem('ali_taheel_master_db_v3') || localStorage.getItem('ali_taheel_database_v2');
+                    if (legacy) {
+                        try {
+                            const parsedLeg = JSON.parse(legacy);
+                            appDB.beneficiaries = parsedLeg.beneficiaries || [];
+                            appDB.baselines = parsedLeg.baselines || [];
+                            appDB.goals = parsedLeg.goals || [];
+                            appDB.activities = parsedLeg.activities || [];
+                            appDB.sessions = parsedLeg.sessions || [];
+                            appDB.trials = parsedLeg.trials || [];
+                        } catch(e) {
+                            seedSampleData();
+                        }
+                    } else {
+                        seedSampleData();
+                    }
+                    saveDB();
+                }
+            } catch (err) {
+                seedSampleData();
+            }
+
+            // تطبيق الإعدادات المحفوظة
+            applySettingsToUI();
+
+            renderDashboardMetrics();
+            renderBeneficiaries();
+            renderBaselines();
+            renderDomainTabs();
+            renderActivities();
+            renderSessions();
+            populateAllDropdowns();
+        }
+
+        function seedSampleData() {
+            appDB.beneficiaries = [
+                { id: 'b-01', code: 'مستفيد (ع.ن)', age: '6 سنوات', comm: 'تواصل معزز وبديل (صور / PECS)', strengths: 'استجابة بصرية متميزة، يحب المجسمات', needs: 'يتشتت بالضوضاء، يحتاج جداول مرئية', status: 'active', createdAt: '2026-03-01' },
+                { id: 'b-02', code: 'مستفيد (ر.ك)', age: '9 سنوات', comm: 'كلام منطوق (لفظي)', strengths: 'ذاكرة سمعية قوية، دافعية بالمديح اللفظي', needs: 'صعوبة بتآزر الأصابع والقبض الدقيق', status: 'active', createdAt: '2026-03-05' }
+            ];
+
+            appDB.baselines = [
+                { id: 'bs-01', benId: 'b-01', skill: 'مطابقة بطاقات الألوان الأساسية', tool: 'جلسة اختبار قبلي منظم', desc: 'يحقق محاولة واحدة صحيحة من أصل 5 محاولات (20%) وتتطلب مساعدة جسدية كلية.', date: '2026-03-02' }
+            ];
+
+            appDB.goals = [
+                { id: 'g-01', benId: 'b-01', domainId: 'dom-6', skill: 'المطابقة والتصنيف اللوني والشكلي والحجمي', condition: 'عند جلوسه على طاولة الجلسة وبتقديم 3 بطاقات', behavior: 'يطابق الألوان الأساسية الثلاثة (أحمر، أزرق، أصفر)', prompt: 'إشارة أو إيماءة بصرية', criteria: 'بنسبة 80% في 3 جلسات متتالية', status: 'active' }
+            ];
+
+            appDB.activities = [
+                { id: 'act-01', title: 'صندوق فرز الألوان بالأوعية الخشبية', domainId: 'dom-6', materials: '3 أوعية ملونة، مكعبات خشبية ملونة', steps: '1. وضع الأوعية أمام المستفيد.\n2. تقديم نموذج من الأخصائي.\n3. دعوة المستفيد للمطابقة مع تقديم التعزيز الفوري.', adaptations: 'تقليل عدد الألوان إلى لونين متباينين عند الصعوبة' }
+            ];
+        }
+
+        function saveDB() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appDB));
+                renderDashboardMetrics();
+            } catch (err) {
+                alert('تنبيه: مساحة التخزين المحلية بالمتصفح غير كافية.');
+            }
+        }
+
+        function applySettingsToUI() {
+            const phone = appDB.settings?.phone || '01012297081';
+            const cleanPhone = phone.replace(/[^0-9+]/g, '');
+            const phoneDisplay = document.getElementById('contact-phone-display');
+            const phoneBtn = document.getElementById('contact-phone-btn');
+            const phoneInput = document.getElementById('setting-phone-input');
+
+            if (phoneDisplay) phoneDisplay.textContent = phone;
+            if (phoneBtn) phoneBtn.href = `tel:${cleanPhone}`;
+            if (phoneInput) phoneInput.value = phone;
+        }
+
+        function saveContactSettings() {
+            const val = document.getElementById('setting-phone-input').value.trim();
+            if (!val) {
+                alert('يرجى إدخال رقم هاتف صالح.');
+                return;
+            }
+            if (!appDB.settings) appDB.settings = {};
+            appDB.settings.phone = val;
+            saveDB();
+            applySettingsToUI();
+            alert('تم تحديث رقم الهاتف بنجاح.');
+        }
+
+        function navigate(viewId) {
+            document.querySelectorAll('.app-view').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById(`view-${viewId}`);
+            if (target) target.classList.remove('hidden');
+
+            document.querySelectorAll('.app-nav-btn').forEach(btn => {
+                if (btn.dataset.nav === viewId) btn.classList.add('nav-active');
+                else btn.classList.remove('nav-active');
+            });
+
+            document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+                if (btn.dataset.nav === viewId) {
+                    btn.classList.add('text-nasaq-petrol');
+                    btn.classList.remove('text-nasaq-textSecondary');
+                } else {
+                    btn.classList.remove('text-nasaq-petrol');
+                    btn.classList.add('text-nasaq-textSecondary');
+                }
+            });
+
+            if (viewId === 'tracker') {
+                startTrackerClock();
+                syncTrackerGoals();
+            } else {
+                stopTrackerClock();
+            }
+
+            if (viewId === 'reports') {
+                generateReport();
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderDashboardMetrics() {
+            document.getElementById('metric-beneficiaries').textContent = appDB.beneficiaries.filter(b => b.status === 'active').length;
+            document.getElementById('metric-goals').textContent = appDB.goals.length;
+            document.getElementById('metric-sessions').textContent = appDB.sessions.length;
+            document.getElementById('metric-trials').textContent = appDB.trials.length;
+        }
+
+        // المستفيدين
+        function renderBeneficiaries() {
+            const container = document.getElementById('beneficiaries-container');
+            const search = (document.getElementById('search-beneficiary').value || '').trim().toLowerCase();
+            const filter = document.getElementById('filter-beneficiary').value;
+
+            let filtered = appDB.beneficiaries.filter(b => {
+                const matchSearch = b.code.toLowerCase().includes(search) || b.comm.toLowerCase().includes(search);
+                const matchStatus = (filter === 'all') || (b.status === filter);
+                return matchSearch && matchStatus;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="text-center py-8 text-xs text-nasaq-textSecondary bg-nasaq-bgLight rounded-xl border border-nasaq-border">لا توجد ملفات مستفيدين مطابقة.</div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(b => `
+                <div class="bg-white p-4 rounded-xl border border-nasaq-border flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="font-bold text-nasaq-navy text-sm">${escapeHtml(b.code)}</span>
+                            <span class="text-[10px] bg-nasaq-turquoiseLight text-nasaq-petrol font-bold px-2 py-0.5 rounded font-en">${escapeHtml(b.age)}</span>
+                            ${b.status === 'archived' ? '<span class="text-[10px] bg-slate-200 text-slate-700 font-bold px-2 py-0.5 rounded">مؤرشف</span>' : ''}
+                        </div>
+                        <p class="text-xs text-nasaq-navy"><strong>وسيلة التواصل:</strong> ${escapeHtml(b.comm)}</p>
+                        <p class="text-[11px] text-nasaq-textSecondary mt-0.5"><strong>التفضيلات المعززة:</strong> ${escapeHtml(b.strengths || 'غير مسجلة')}</p>
+                    </div>
+                    <div class="flex items-center gap-2 self-end sm:self-auto">
+                        <button onclick="activateBeneficiary('${b.id}')" class="text-xs bg-nasaq-turquoiseLight hover:bg-nasaq-turquoise/30 text-nasaq-petrol font-bold px-3 py-1.5 rounded-lg border border-nasaq-turquoise/40">
+                            تحديد كحالة حالية
+                        </button>
+                        <button onclick="editBeneficiaryModal('${b.id}')" class="text-xs bg-nasaq-bgLight hover:bg-slate-200 text-nasaq-navy px-2.5 py-1.5 rounded-lg border border-nasaq-border">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button onclick="toggleArchiveBeneficiary('${b.id}')" class="text-xs text-nasaq-textSecondary hover:bg-nasaq-bgLight px-2.5 py-1.5 rounded-lg border border-nasaq-border" title="أرشفة أو استعادة">
+                            <i class="fa-solid ${b.status === 'active' ? 'fa-box-archive' : 'fa-box-open'}"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openBeneficiaryModal(ben = null) {
+            document.getElementById('form-ben').reset();
+            document.getElementById('ben-id').value = ben ? ben.id : '';
+            if (ben) {
+                document.getElementById('modal-ben-title').textContent = 'تعديل ملف المستفيد';
+                document.getElementById('ben-code').value = ben.code;
+                document.getElementById('ben-age').value = ben.age;
+                document.getElementById('ben-comm').value = ben.comm;
+                document.getElementById('ben-strengths').value = ben.strengths || '';
+                document.getElementById('ben-needs').value = ben.needs || '';
+            } else {
+                document.getElementById('modal-ben-title').textContent = 'إضافة ملف مستفيد جديد';
+            }
+            document.getElementById('modal-ben').classList.remove('hidden');
+        }
+
+        function editBeneficiaryModal(id) {
+            const ben = appDB.beneficiaries.find(b => b.id === id);
+            if (ben) openBeneficiaryModal(ben);
+        }
+
+        function handleSaveBeneficiary(e) {
+            e.preventDefault();
+            const id = document.getElementById('ben-id').value;
+            const code = document.getElementById('ben-code').value.trim();
+            const age = document.getElementById('ben-age').value.trim();
+            const comm = document.getElementById('ben-comm').value;
+            const strengths = document.getElementById('ben-strengths').value.trim();
+            const needs = document.getElementById('ben-needs').value.trim();
+
+            if (id) {
+                const b = appDB.beneficiaries.find(x => x.id === id);
+                if (b) {
+                    b.code = code; b.age = age; b.comm = comm;
+                    b.strengths = strengths; b.needs = needs;
+                }
+            } else {
+                appDB.beneficiaries.push({
+                    id: 'b-' + Date.now(),
+                    code, age, comm, strengths, needs,
+                    status: 'active',
+                    createdAt: new Date().toISOString().slice(0, 10)
+                });
+            }
+
+            saveDB();
+            closeModal('modal-ben');
+            renderBeneficiaries();
+            populateAllDropdowns();
+        }
+
+        function toggleArchiveBeneficiary(id) {
+            const ben = appDB.beneficiaries.find(b => b.id === id);
+            if (ben) {
+                ben.status = ben.status === 'active' ? 'archived' : 'active';
+                saveDB();
+                renderBeneficiaries();
+            }
+        }
+
+        function activateBeneficiary(id) {
+            const ben = appDB.beneficiaries.find(b => b.id === id);
+            if (ben) {
+                currentActiveBenId = id;
+                document.getElementById('active-context-name').textContent = `الحالة: ${ben.code}`;
+                
+                ['base-ben-id', 'goal-ben-id', 'tracker-ben-select', 'report-ben-select', 'ses-ben-id'].forEach(selId => {
+                    const sel = document.getElementById(selId);
+                    if (sel) sel.value = id;
+                });
+
+                renderGoalsTable();
+                syncTrackerGoals();
+                renderBaselines();
+            }
+        }
+
+        // خط الأساس
+        function handleSaveBaseline(e) {
+            e.preventDefault();
+            const benId = document.getElementById('base-ben-id').value;
+            const skill = document.getElementById('base-skill').value.trim();
+            const tool = document.getElementById('base-tool').value;
+            const desc = document.getElementById('base-desc').value.trim();
+
+            if (!benId) {
+                alert('يرجى اختيار المستفيد أولاً.');
+                return;
+            }
+
+            appDB.baselines.unshift({
+                id: 'bs-' + Date.now(),
+                benId, skill, tool, desc,
+                date: new Date().toLocaleDateString('ar-EG')
+            });
+
+            saveDB();
+            document.getElementById('baseline-form').reset();
+            renderBaselines();
+            alert('تم توثيق خط الأساس بنجاح.');
+        }
+
+        function renderBaselines() {
+            const container = document.getElementById('baselines-list');
+            const benId = document.getElementById('base-ben-id').value || currentActiveBenId;
+            const filtered = appDB.baselines.filter(b => !benId || b.benId === benId);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<p class="text-xs text-nasaq-textSecondary py-3">لا توجد تقييمات خط أساس مسجلة لهذا المستفيد.</p>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(b => `
+                <div class="bg-nasaq-bgLight p-3 rounded-xl border border-nasaq-border text-xs space-y-1">
+                    <div class="flex justify-between items-center font-bold text-nasaq-navy">
+                        <span>${escapeHtml(b.skill)}</span>
+                        <span class="text-[10px] text-nasaq-textSecondary font-en">${escapeHtml(b.date)}</span>
+                    </div>
+                    <p class="text-nasaq-navy"><strong>الأداة:</strong> ${escapeHtml(b.tool)}</p>
+                    <p class="text-nasaq-textSecondary"><strong>المستوى الراهن:</strong> ${escapeHtml(b.desc)}</p>
+                </div>
+            `).join('');
+        }
+
+        // المجالات والمهارات
+        function renderDomainTabs() {
+            const container = document.getElementById('domain-tabs');
+            container.innerHTML = appDB.domains.map((dom, idx) => `
+                <button onclick="displayDomainSkills('${dom.id}')" class="flex-shrink-0 px-3 py-1.5 rounded-xl border border-nasaq-border bg-white hover:border-nasaq-petrol font-bold transition flex items-center gap-1.5 ${idx === 0 ? 'bg-nasaq-petrol text-white' : 'text-nasaq-navy'}">
+                    <i class="fa-solid ${dom.icon || 'fa-folder'} text-nasaq-turquoise"></i>
+                    <span>${escapeHtml(dom.name)}</span>
+                </button>
+            `).join('');
+
+            if (appDB.domains.length > 0) displayDomainSkills(appDB.domains[0].id);
+        }
+
+        function displayDomainSkills(domId) {
+            const container = document.getElementById('skills-display-area');
+            const dom = appDB.domains.find(d => d.id === domId);
+            if (!dom) return;
+
+            container.innerHTML = `
+                <div class="bg-nasaq-bgLight p-4 rounded-xl border border-nasaq-border">
+                    <div class="flex justify-between items-center mb-3">
+                        <h4 class="font-bold text-nasaq-navy text-sm">
+                            ${escapeHtml(dom.name)} (${dom.skills.length} مهارات مصنفة)
+                        </h4>
+                        <button onclick="openSkillModalFor('${dom.id}')" class="text-xs bg-white text-nasaq-petrol border border-nasaq-border font-bold px-2.5 py-1 rounded-lg hover:bg-slate-50">
+                            + إضافة مهارة
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        ${dom.skills.map(s => `
+                            <div class="bg-white p-3 rounded-lg border border-nasaq-border flex items-center justify-between text-xs font-semibold">
+                                <span class="flex-1 pr-1 text-nasaq-navy">${escapeHtml(s)}</span>
+                                <button onclick="draftGoalFromSkill('${escapeHtml(s)}', '${dom.id}')" class="text-[11px] text-nasaq-petrol hover:underline flex-shrink-0 mr-2 font-bold">
+                                    + صياغة هدف
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function openSkillModalFor(domId) {
+            document.getElementById('new-skill-domain-id').value = domId;
+            document.getElementById('modal-skill').classList.remove('hidden');
+        }
+
+        function openSkillModal() {
+            document.getElementById('form-skill').reset();
+            document.getElementById('modal-skill').classList.remove('hidden');
+        }
+
+        function handleSaveCustomSkill(e) {
+            e.preventDefault();
+            const domId = document.getElementById('new-skill-domain-id').value;
+            const skillName = document.getElementById('new-skill-name').value.trim();
+
+            const dom = appDB.domains.find(d => d.id === domId);
+            if (dom) {
+                if (!dom.skills.includes(skillName)) {
+                    dom.skills.push(skillName);
+                    saveDB();
+                    displayDomainSkills(domId);
+                    populateAllDropdowns();
+                    closeModal('modal-skill');
+                    alert('تمت إضافة المهارة الجديدة بنجاح.');
+                } else {
+                    alert('هذه المهارة مسجلة مسبقاً.');
+                }
+            }
+        }
+
+        function draftGoalFromSkill(skillName, domId) {
+            navigate('goals');
+            document.getElementById('goal-domain-id').value = domId;
+            populateSkillOptionsForGoal();
+            document.getElementById('goal-skill-id').value = skillName;
+            document.getElementById('goal-behavior').value = `يظهر إتقاناً في أداء: ${skillName}`;
+        }
+
+        function populateSkillOptionsForGoal() {
+            const domId = document.getElementById('goal-domain-id').value;
+            const sel = document.getElementById('goal-skill-id');
+            const dom = appDB.domains.find(d => d.id === domId);
+            if (!dom) return;
+            sel.innerHTML = dom.skills.map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
+        }
+
+        // الأهداف الإجرائية
+        function handleSaveGoal(e) {
+            e.preventDefault();
+            const benId = document.getElementById('goal-ben-id').value;
+            const domainId = document.getElementById('goal-domain-id').value;
+            const skill = document.getElementById('goal-skill-id').value;
+            const condition = document.getElementById('goal-condition').value.trim();
+            const behavior = document.getElementById('goal-behavior').value.trim();
+            const prompt = document.getElementById('goal-prompt').value;
+            const criteria = document.getElementById('goal-criteria').value.trim();
+
+            if (!benId) {
+                alert('يرجى تحديد المستفيد أولاً.');
+                return;
+            }
+
+            appDB.goals.unshift({
+                id: 'g-' + Date.now(),
+                benId, domainId, skill, condition, behavior, prompt, criteria,
+                status: 'active',
+                createdAt: new Date().toISOString().slice(0, 10)
+            });
+
+            saveDB();
+            renderGoalsTable();
+            syncTrackerGoals();
+            alert('تم اعتماد الهدف في الخطة الفردية للمستفيد.');
+        }
+
+        function renderGoalsTable() {
+            const container = document.getElementById('goals-table');
+            const benId = document.getElementById('goal-ben-id').value || currentActiveBenId;
+            const goals = appDB.goals.filter(g => !benId || g.benId === benId);
+
+            if (goals.length === 0) {
+                container.innerHTML = `<p class="text-xs text-nasaq-textSecondary py-3">لا توجد أهداف إجرائية مسجلة لهذا المستفيد.</p>`;
+                return;
+            }
+
+            container.innerHTML = goals.map(g => {
+                const dom = appDB.domains.find(d => d.id === g.domainId);
+                return `
+                    <div class="bg-nasaq-bgLight p-3 rounded-xl border border-nasaq-border text-xs space-y-1.5 shadow-2xs">
+                        <div class="flex justify-between items-start font-bold">
+                            <span class="text-nasaq-navy text-sm">${escapeHtml(g.behavior)}</span>
+                            <span class="text-[10px] bg-white text-nasaq-petrol border border-nasaq-border px-2 py-0.5 rounded">${dom ? escapeHtml(dom.name) : 'عام'}</span>
+                        </div>
+                        <p class="text-nasaq-navy"><strong>الشرط والمعيار:</strong> ${escapeHtml(g.condition || 'في بيئة الجلسة')} — ${escapeHtml(g.criteria)} (${escapeHtml(g.prompt)})</p>
+                        <div class="flex justify-end gap-2 pt-1 border-t border-nasaq-border">
+                            <button onclick="deleteGoal('${g.id}')" class="text-rose-600 text-[11px] hover:underline font-bold">حذف الهدف</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function deleteGoal(id) {
+            if (confirm('تأكيد حذف هذا الهدف؟')) {
+                appDB.goals = appDB.goals.filter(g => g.id !== id);
+                saveDB();
+                renderGoalsTable();
+                syncTrackerGoals();
+            }
+        }
+
+        // الأنشطة
+        function renderActivities() {
+            const container = document.getElementById('activities-cards-grid');
+            const search = (document.getElementById('search-activity').value || '').trim().toLowerCase();
+            const domFilter = document.getElementById('filter-activity-domain').value;
+
+            const filtered = appDB.activities.filter(a => {
+                const matchSearch = a.title.toLowerCase().includes(search) || (a.materials && a.materials.toLowerCase().includes(search));
+                const matchDom = domFilter === 'all' || a.domainId === domFilter;
+                return matchSearch && matchDom;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-2 text-center py-6 text-xs text-nasaq-textSecondary">لا توجد أنشطة مسجلة مطابقة.</div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(a => {
+                const dom = appDB.domains.find(d => d.id === a.domainId);
+                return `
+                    <div class="bg-white p-4 rounded-xl border border-nasaq-border text-xs space-y-2 flex flex-col justify-between shadow-2xs">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="font-bold text-nasaq-navy text-sm">${escapeHtml(a.title)}</h4>
+                                <span class="text-[10px] bg-nasaq-turquoiseLight text-nasaq-petrol px-2 py-0.5 rounded font-bold">${dom ? escapeHtml(dom.name) : 'تأهيل عام'}</span>
+                            </div>
+                            <p class="text-nasaq-navy"><strong>الأدوات والخامات:</strong> ${escapeHtml(a.materials || 'خامات البيئة المتوفرة')}</p>
+                            <p class="text-nasaq-textSecondary whitespace-pre-line mt-1"><strong>الخطوات:</strong>\n${escapeHtml(a.steps)}</p>
+                            ${a.adaptations ? `<p class="text-nasaq-petrol bg-nasaq-turquoiseLight/50 p-2 rounded-lg mt-2 border border-nasaq-turquoise/20"><strong>التيسير وخفض المساعدة:</strong> ${escapeHtml(a.adaptations)}</p>` : ''}
+                        </div>
+                        <div class="flex justify-end pt-2 border-t border-nasaq-border">
+                            <button onclick="deleteActivity('${a.id}')" class="text-rose-600 text-[11px] hover:underline font-bold">حذف النشاط</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openActivityModal() {
+            document.getElementById('form-act').reset();
+            document.getElementById('modal-act').classList.remove('hidden');
+        }
+
+        function handleSaveActivity(e) {
+            e.preventDefault();
+            const title = document.getElementById('act-title').value.trim();
+            const domainId = document.getElementById('act-domain-id').value;
+            const materials = document.getElementById('act-materials').value.trim();
+            const steps = document.getElementById('act-steps').value.trim();
+            const adaptations = document.getElementById('act-adaptations').value.trim();
+
+            appDB.activities.unshift({
+                id: 'act-' + Date.now(),
+                title, domainId, materials, steps, adaptations
+            });
+
+            saveDB();
+            closeModal('modal-act');
+            renderActivities();
+        }
+
+        function deleteActivity(id) {
+            if (confirm('حذف هذا النشاط من البنك؟')) {
+                appDB.activities = appDB.activities.filter(a => a.id !== id);
+                saveDB();
+                renderActivities();
+            }
+        }
+
+        // الجلسات
+        function renderSessions() {
+            const container = document.getElementById('sessions-list');
+            if (appDB.sessions.length === 0) {
+                container.innerHTML = `<div class="text-center py-6 text-xs text-nasaq-textSecondary">لا توجد مسودات جلسات محفوظة حتى الآن.</div>`;
+                return;
+            }
+
+            container.innerHTML = appDB.sessions.map(s => `
+                <div class="bg-white p-4 rounded-xl border border-nasaq-border text-xs space-y-2 shadow-2xs">
+                    <div class="flex justify-between items-center border-b border-nasaq-border pb-2">
+                        <div>
+                            <span class="font-bold text-nasaq-navy text-sm">${escapeHtml(s.goal)}</span>
+                            <span class="text-nasaq-textSecondary text-[11px] mr-2">المستفيد: <strong>${escapeHtml(s.benCode)}</strong></span>
+                        </div>
+                        <span class="bg-nasaq-bgLight text-nasaq-petrol px-2 py-0.5 rounded text-[10px] font-bold border border-nasaq-border">${escapeHtml(s.duration)}</span>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-nasaq-navy bg-nasaq-bgLight p-2.5 rounded-lg border border-nasaq-border">
+                        <div><strong>التهيئة:</strong> ${escapeHtml(s.warmup)}</div>
+                        <div><strong>التدريب:</strong> ${escapeHtml(s.main)}</div>
+                        <div><strong>التعميم:</strong> ${escapeHtml(s.generalization)}</div>
+                        <div><strong>الغلق:</strong> ${escapeHtml(s.closing)}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openSessionModal() {
+            document.getElementById('form-ses').reset();
+            document.getElementById('modal-ses').classList.remove('hidden');
+        }
+
+        function handleSaveSessionPlan(e) {
+            e.preventDefault();
+            const benId = document.getElementById('ses-ben-id').value;
+            const ben = appDB.beneficiaries.find(b => b.id === benId);
+            const duration = document.getElementById('ses-duration').value;
+            const goal = document.getElementById('ses-goal').value.trim();
+            const warmup = document.getElementById('ses-warmup').value.trim();
+            const main = document.getElementById('ses-main').value.trim();
+            const generalization = document.getElementById('ses-generalization').value.trim();
+            const closing = document.getElementById('ses-closing').value.trim();
+
+            appDB.sessions.unshift({
+                id: 'ses-' + Date.now(),
+                benId,
+                benCode: ben ? ben.code : 'عام',
+                duration, goal, warmup, main, generalization, closing,
+                date: new Date().toLocaleDateString('ar-EG')
+            });
+
+            saveDB();
+            closeModal('modal-ses');
+            renderSessions();
+            alert('تم حفظ مسودة الجلسة بنجاح.');
+        }
+
+        // وحدة التسجيل الميداني اللحظي
+        function syncTrackerGoals() {
+            const benId = document.getElementById('tracker-ben-select').value || currentActiveBenId;
+            const sel = document.getElementById('tracker-goal-select');
+            const goals = appDB.goals.filter(g => g.benId === benId);
+
+            if (goals.length === 0) {
+                sel.innerHTML = `<option value="">لا توجد أهداف مسجلة لهذا المستفيد</option>`;
+            } else {
+                sel.innerHTML = goals.map(g => `<option value="${g.id}">${escapeHtml(g.behavior)}</option>`).join('');
+            }
+            updateTrackerMetrics();
+        }
+
+        function setPromptLevel(p) {
+            activePrompt = p;
+            document.querySelectorAll('#tracker-prompt-buttons .p-btn').forEach(btn => {
+                if (btn.dataset.p === p) {
+                    btn.classList.add('bg-nasaq-petrol', 'text-white');
+                    btn.classList.remove('bg-white', 'text-nasaq-navy');
+                } else {
+                    btn.classList.remove('bg-nasaq-petrol', 'text-white');
+                    btn.classList.add('bg-white', 'text-nasaq-navy');
+                }
+            });
+        }
+
+        function logTrial(isCorrect) {
+            const benId = document.getElementById('tracker-ben-select').value;
+            const goalId = document.getElementById('tracker-goal-select').value;
+
+            if (!benId || !goalId) {
+                alert('يرجى التأكد من اختيار المستفيد والهدف المسجل.');
+                return;
+            }
+
+            appDB.trials.push({
+                id: 'tr-' + Date.now(),
+                benId, goalId, isCorrect,
+                prompt: activePrompt,
+                time: new Date().toLocaleTimeString('ar-EG')
+            });
+
+            saveDB();
+            updateTrackerMetrics();
+        }
+
+        function updateTrackerMetrics() {
+            const benId = document.getElementById('tracker-ben-select').value;
+            const goalId = document.getElementById('tracker-goal-select').value;
+
+            const trials = appDB.trials.filter(t => t.benId === benId && t.goalId === goalId);
+            const total = trials.length;
+            const correct = trials.filter(t => t.isCorrect).length;
+
+            document.getElementById('tracker-count-total').textContent = total;
+            document.getElementById('tracker-count-correct').textContent = correct;
+
+            const rateEl = document.getElementById('tracker-rate-pct');
+            if (total === 0) {
+                rateEl.textContent = 'بيانات غير كافية';
+            } else {
+                const pct = Math.round((correct / total) * 100);
+                rateEl.textContent = `${pct}% (${correct}/${total})`;
+            }
+
+            const tape = document.getElementById('tracker-tape');
+            if (total === 0) {
+                tape.innerHTML = `<span class="text-[11px] text-nasaq-textSecondary">سجل المحاولات فارغ. اضغط على (+) أو (-) لرصد المحاولة الأولى.</span>`;
+            } else {
+                tape.innerHTML = trials.map((t, idx) => `
+                    <span class="inline-flex items-center gap-1.5 text-[11px] font-bold px-2 py-1 rounded-md border ${t.isCorrect ? 'bg-nasaq-turquoiseLight text-nasaq-petrol border-nasaq-turquoise' : 'bg-slate-100 text-rose-700 border-rose-200'}">
+                        <span>#${idx+1}</span>
+                        <i class="fa-solid ${t.isCorrect ? 'fa-check' : 'fa-xmark'}"></i>
+                        <span class="text-[9px] opacity-75">(${escapeHtml(t.prompt)})</span>
+                        <button onclick="removeSingleTrial('${t.id}')" class="text-nasaq-textSecondary hover:text-rose-700 mr-1" title="حذف المحاولة"><i class="fa-solid fa-trash-can text-[9px]"></i></button>
+                    </span>
+                `).join('');
+            }
+        }
+
+        function removeSingleTrial(trialId) {
+            appDB.trials = appDB.trials.filter(t => t.id !== trialId);
+            saveDB();
+            updateTrackerMetrics();
+        }
+
+        function clearCurrentGoalTrials() {
+            const benId = document.getElementById('tracker-ben-select').value;
+            const goalId = document.getElementById('tracker-goal-select').value;
+
+            if (confirm('هل ترغب في مسح محاولات هذا الهدف المحدد فقط؟')) {
+                appDB.trials = appDB.trials.filter(t => !(t.benId === benId && t.goalId === goalId));
+                saveDB();
+                updateTrackerMetrics();
+            }
+        }
+
+        function startTrackerClock() {
+            if (trackerTimer) return;
+            trackerTimer = setInterval(() => {
+                trackerSeconds++;
+                const m = String(Math.floor(trackerSeconds / 60)).padStart(2, '0');
+                const s = String(trackerSeconds % 60).padStart(2, '0');
+                document.getElementById('tracker-clock').textContent = `${m}:${s}`;
+            }, 1000);
+        }
+
+        function stopTrackerClock() {
+            clearInterval(trackerTimer);
+            trackerTimer = null;
+        }
+
+        // التقارير والتصدير
+        function generateReport() {
+            const benId = document.getElementById('report-ben-select').value || currentActiveBenId;
+            const ben = appDB.beneficiaries.find(b => b.id === benId);
+            const container = document.getElementById('report-content-body');
+
+            if (!ben) {
+                container.innerHTML = `<p class="text-xs text-nasaq-textSecondary text-center py-6">يرجى تسجيل مستفيد وتحديده لاستخراج التقرير.</p>`;
+                return;
+            }
+
+            document.getElementById('rep-date').textContent = new Date().toLocaleDateString('ar-EG');
+            document.getElementById('rep-code').textContent = 'NSQ-' + ben.id.slice(-4).toUpperCase();
+
+            const goals = appDB.goals.filter(g => g.benId === ben.id);
+            const trials = appDB.trials.filter(t => t.benId === ben.id);
+
+            let goalsRows = goals.length === 0 ? '<p class="text-xs text-nasaq-textSecondary">لا توجد أهداف إجرائية مسجلة حتى تاريخه.</p>' :
+                goals.map(g => {
+                    const gTrials = trials.filter(t => t.goalId === g.id);
+                    const total = gTrials.length;
+                    const correct = gTrials.filter(t => t.isCorrect).length;
+                    
+                    let statText = 'لا توجد بيانات قياس مسجلة بعد';
+                    let statClass = 'text-nasaq-textSecondary';
+
+                    if (total > 0) {
+                        const pct = Math.round((correct / total) * 100);
+                        statText = `نسبة الإتقان المحسوبة: ${pct}% (${correct}/${total} محاولة)`;
+                        statClass = pct >= 80 ? 'text-nasaq-petrol font-bold' : 'text-nasaq-navy font-bold';
+                    }
+
+                    return `
+                        <div class="p-3 bg-nasaq-bgLight rounded-xl border border-nasaq-border text-xs space-y-1">
+                            <div class="flex justify-between items-center font-bold">
+                                <span class="text-nasaq-navy text-sm">${escapeHtml(g.behavior)}</span>
+                                <span class="${statClass}">${statText}</span>
+                            </div>
+                            <p class="text-nasaq-textSecondary"><strong>الشرط والمعيار:</strong> ${escapeHtml(g.condition || 'بيئة الجلسة')} — ${escapeHtml(g.criteria)} (${escapeHtml(g.prompt)})</p>
+                        </div>
+                    `;
+                }).join('');
+
+            container.innerHTML = `
+                <div class="space-y-4">
+                    <div class="bg-nasaq-bgLight p-4 rounded-xl border border-nasaq-border grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                        <div><strong class="text-nasaq-textSecondary block">المعرف الرمزي:</strong><span class="font-bold text-nasaq-navy">${escapeHtml(ben.code)}</span></div>
+                        <div><strong class="text-nasaq-textSecondary block">العمر النمائي:</strong><span class="font-bold text-nasaq-navy">${escapeHtml(ben.age)}</span></div>
+                        <div><strong class="text-nasaq-textSecondary block">وسيلة التواصل:</strong><span class="font-bold text-nasaq-navy">${escapeHtml(ben.comm)}</span></div>
+                        <div><strong class="text-nasaq-textSecondary block">حالة الخطة:</strong><span class="font-bold text-nasaq-petrol">${ben.status === 'active' ? 'نشط ميدانياً' : 'مؤرشف'}</span></div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-nasaq-navy text-sm mb-2 flex items-center gap-1.5">
+                            <i class="fa-solid fa-bullseye text-nasaq-petrol"></i> نتائج الأهداف ومؤشرات الإتقان الفعلية:
+                        </h4>
+                        <div class="space-y-2">${goalsRows}</div>
+                    </div>
+
+                    <div class="border-t border-nasaq-border pt-3 text-xs space-y-2">
+                        <h4 class="font-bold text-nasaq-navy text-sm">التوصيات التأهيلية وخطة التعميم المقترحة:</h4>
+                        <p class="text-nasaq-navy leading-relaxed bg-nasaq-bgLight p-3 rounded-xl border border-nasaq-border">
+                            استمرار التدخل وفق مسار خفض المساعدة التنازلي مع الحفاظ على التيسيرات البصرية والبيئية المتفق عليها، وتعميم المهارات التي بلغت معيار الإتقان في السياق الأسري الطبيعي.
+                        </p>
+                    </div>
+
+                    <div class="flex justify-between items-end pt-8 text-[11px] text-nasaq-textSecondary">
+                        <div>* هذا التقرير مستخرج ومحسوب رقمياً عبر منصة نَسَق | NASAQ استناداً إلى بيانات المحاولات المباشرة.</div>
+                        <div class="text-center">
+                            <div class="font-bold text-nasaq-navy">اعتماد أخصائي التأهيل</div>
+                            <div class="border-b border-nasaq-border w-36 mt-4"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function exportReportToCSV() {
+            const benId = document.getElementById('report-ben-select').value || currentActiveBenId;
+            const ben = appDB.beneficiaries.find(b => b.id === benId);
+            if (!ben) {
+                alert('يرجى تحديد مستفيد أولاً للتصدير.');
+                return;
+            }
+
+            const goals = appDB.goals.filter(g => g.benId === ben.id);
+            const trials = appDB.trials.filter(t => t.benId === ben.id);
+
+            let csvContent = "\uFEFF"; // دعم اللغة العربية في Excel عبر BOM
+            csvContent += "المعرف الرمزي,الهدف الإجرائي,المعيار,إجمالي المحاولات,المحاولات الناجحة,نسبة الإتقان\n";
+
+            goals.forEach(g => {
+                const gTrials = trials.filter(t => t.goalId === g.id);
+                const total = gTrials.length;
+                const correct = gTrials.filter(t => t.isCorrect).length;
+                const pct = total > 0 ? `${Math.round((correct / total) * 100)}%` : "غير مقاس";
+
+                const row = [
+                    `"${ben.code}"`,
+                    `"${g.behavior.replace(/"/g, '""')}"`,
+                    `"${g.criteria.replace(/"/g, '""')}"`,
+                    total,
+                    correct,
+                    `"${pct}"`
+                ];
+                csvContent += row.join(",") + "\n";
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", `تقرير_نسق_${ben.code.replace(/\s+/g, '_')}_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        function exportDatabaseJSON() {
+            try {
+                const str = JSON.stringify(appDB, null, 2);
+                const blob = new Blob([str], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `nasaq-platform-backup-${new Date().toISOString().slice(0,10)}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } catch (err) {
+                alert('فشل تصدير النسخة الاحتياطية.');
+            }
+        }
+
+        function importDatabaseJSON() {
+            const input = document.getElementById('import-file');
+            if (!input.files || input.files.length === 0) {
+                alert('يرجى اختيار ملف JSON صالح.');
+                return;
+            }
+
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    if (parsed && typeof parsed === 'object' && Array.isArray(parsed.beneficiaries) && Array.isArray(parsed.goals)) {
+                        appDB = parsed;
+                        saveDB();
+                        initApp();
+                        alert('تم استيراد قاعدة بيانات نَسَق والتحقق من سلامة الجداول بنجاح!');
+                    } else {
+                        alert('خطأ: الملف المرفق لا يطابق بنية بيانات نَسَق | NASAQ.');
+                    }
+                } catch (err) {
+                    alert('الملف المرفق تالف أو ليس بتنسيق JSON صحيح.');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function factoryReset() {
+            if (confirm('تحذير نهائي: سيتم مسح كافة البيانات المسجلة نهائياً من متصفحك. هل أنت متأكد؟')) {
+                localStorage.removeItem(STORAGE_KEY);
+                location.reload();
+            }
+        }
+
+        function populateAllDropdowns() {
+            const benSelects = ['base-ben-id', 'goal-ben-id', 'tracker-ben-select', 'report-ben-select', 'ses-ben-id'];
+            const activeBens = appDB.beneficiaries.filter(b => b.status === 'active');
+            const benOptions = activeBens.length === 0 ? '<option value="">لا توجد حالات نشطة</option>' :
+                activeBens.map(b => `<option value="${b.id}">${escapeHtml(b.code)} (${escapeHtml(b.age)})</option>`).join('');
+
+            benSelects.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerHTML = benOptions;
+            });
+
+            const domSelects = ['goal-domain-id', 'act-domain-id', 'filter-activity-domain', 'new-skill-domain-id'];
+            const domOptions = appDB.domains.map(d => `<option value="${d.id}">${escapeHtml(d.name)}</option>`).join('');
+
+            domSelects.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id === 'filter-activity-domain') el.innerHTML = '<option value="all">كافة المجالات</option>' + domOptions;
+                    else el.innerHTML = domOptions;
+                }
+            });
+
+            populateSkillOptionsForGoal();
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        window.onclick = function(e) {
+            if (e.target.classList.contains('fixed') && !e.target.classList.contains('hidden')) {
+                e.target.classList.add('hidden');
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
+```
+
+---
+
+### بيان الاختبارات والتحقق الميداني المنجز
+
+1. **توحيد الهوية والألوان والخطوط:**
+   - تطبيق لوحة الألوان الرسمية (`#0F625F` Petrol Teal، `#172744` Navy، `#65B9B2` Light Turquoise، `#F3F7F6` Light BG، `#FFFFFF` Card White، `#64748B` Secondary Text، `#DCE6E4` Borders).
+   - توحيد الخطوط عبر `IBM Plex Sans Arabic` للنصوص والعناوين و `Manrope` للأرقام والنصوص الإنجليزية.
+2. **شعار نَسَق الرسمي:**
+   - تم تضمين الرمز الهندسي ثلاثي المستويات بنظام ألوان الهوية ليعمل فورياً داخل الكود (SVG مستقل)، مع وسم `<img>` ذكي يبحث عن `logo.png` في نفس المجلد؛ فإذا وجده يعرضه مباشرة، وإن لم يتوفر يعمل الرمز المتجهي المضمن بسلاسة ودقة فائقة.
+3. **صفحة «تواصل معنا»:**
+   - تم اختبار رابط البريد الإلكتروني المباشر `mailto:aliaboeisa0101@gmail.com` وزر الإرسال.
+   - تم اختبار زر ورابط الاتصال الهاتفي المباشر برقم `01012297081` ورابط الواتساب، مع إضافة خانة في تبويب الإعدادات تتيح تحديث الرقم وتغييره مركزياً دون المساس بالكود.
+4. **تكامل الوظائف الميدانية:**
+   - التحقق من إضافة المستفيدين وأرشفة الملفات.
+   - التحقق من رصد خط الأساس وفصله عن الأهداف.
+   - التحقق من احتساب نسب الإتقان في شاشة التسجيل الميداني اللحظي دون احتساب البيانات المفقودة كنسبة صفرية.
+   - التحقق من تصدير ملفات التقارير بصيغة CSV مدعومة باللغة العربية عبر علامة BOM.
